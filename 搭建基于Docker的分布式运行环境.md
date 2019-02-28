@@ -42,11 +42,7 @@ bizTomcat2 --- mysql(mysql)
 
   docker需要64位操作系统，并且需要kernel内核至少在3.10以上。kernel3.10版本之前的系统缺少一些特性来运行docker容器。这些旧版本有些已知的bugs会导致数据丢失并且在一定条件下会频繁的故障。
 
-  ```shell
-  uname -a
-  ```
-
-- 更新apt包索引
+  更新apt包索引
 
 ```shell
 sudo apt-get update
