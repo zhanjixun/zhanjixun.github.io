@@ -4,7 +4,7 @@
 
 # *、使用JDK8及解决中文乱码
 
-```
+```xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java_source_version>1.8</java_source_version>
@@ -36,7 +36,7 @@
 
 在POM.xml文件中添加：
 
-```
+```xml
 <build>
     <plugins>
         <plugin>
@@ -70,7 +70,7 @@
 
 在POM.xml文件中添加：
 
-```
+```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-shade-plugin</artifactId>
@@ -106,7 +106,7 @@
 
 首先在pom.xml中添加
 
-```
+```xml
 <build>
     <finalName>AppName</finalName>
     <plugins>
@@ -133,7 +133,7 @@
 
 # *、生成windows可执行exe包
 
-```
+```xml
 <plugin>
     <groupId>com.akathist.maven.plugins.launch4j</groupId>
     <artifactId>launch4j-maven-plugin</artifactId>
@@ -266,4 +266,48 @@
 **运行命令：**
 
 > mvn mybatis-generator:generate
+
+# *、编译跳过测试
+
+## 1、maven-compiler-plugin插件
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.3</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <!--解决乱码问题-->
+        <encoding>utf-8</encoding>
+        <!-- 跳过编译和运行单元测试 -->
+        <skip>true</skip>
+    </configuration>
+</plugin>
+```
+
+## 2、maven-surefire-plugin插件
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <!--编译单元测试但不运行-->
+        <skipTests>true</skipTests>
+    </configuration>
+</plugin>
+```
+
+## 3、命令参数
+
+```shell
+# 跳过编译和运行单元测试
+mvn clean package -Dmaven.test.skip=true
+# 编译单元测试但不执行
+mvn clean package -DskipTests
+```
+
+
 
