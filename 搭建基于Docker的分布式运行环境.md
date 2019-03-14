@@ -107,7 +107,7 @@ mkdir mytomcat
 ​	修改后文件：
 
 ```xml
-<?xml version='1.0' encoding='cp936'?>
+<?xml version='1.0' encoding='utf-8'?>
 <tomcat-users>
 	<role rolename="manager-gui"/>
 	<role rolename="manager-script"/>
