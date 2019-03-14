@@ -189,3 +189,81 @@
 </plugin>
 ```
 
+# *、Mybatis代码生成插件
+
+**配置文件**：`mybatis-generator.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
+    <classPathEntry
+            location="D:\apache-maven-3.6.0\repo\mysql\mysql-connector-java\5.0.5\mysql-connector-java-5.0.5.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.zhanjixun.dto" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhanjixun.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="t_user" domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>
+```
+
+
+
+**maven插件：** `pom.xml`
+
+```xml
+<!-- mybatis generator 自动生成代码插件 -->
+<plugin>
+    <groupId>org.mybatis.generator</groupId>
+    <artifactId>mybatis-generator-maven-plugin</artifactId>
+    <version>1.3.2</version>
+    <configuration>
+        <!--指定mybatis-generator.xml所在路径-->
+        <configurationFile>${basedir}/src/main/resources/generator/mybatis-generator.xml</configurationFile>
+        <!--是否覆盖原有文件-->
+        <overwrite>false</overwrite>
+        <verbose>true</verbose>
+    </configuration>
+</plugin>
+```
+
+**运行命令：**
+
+> mvn mybatis-generator:generate
+
