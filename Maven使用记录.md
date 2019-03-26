@@ -309,5 +309,87 @@ mvn clean package -Dmaven.test.skip=true
 mvn clean package -DskipTests
 ```
 
+# *、maven使用docker插件
 
+## 1、部署war免Dockerfile文件
 
+```xml
+<properties>
+    <!-- 镜像前缀 -->
+    <docker.image.prefix>zhanjixun</docker.image.prefix>
+</properties>
+<plugin>
+    <groupId>com.spotify</groupId>
+    <artifactId>docker-maven-plugin</artifactId>
+    <version>0.4.14</version>
+    <configuration>
+        <imageName>${docker.image.prefix}/${project.build.finalName}</imageName>
+        <imageTags>
+            <imageTag>${project.version}</imageTag>
+            <!--同时发布最新版-->
+            <imageTag>latest</imageTag>
+        </imageTags>
+        <baseImage>tomcat:8.0-jre8</baseImage>
+        <!--<dockerDirectory>${project.basedir}</dockerDirectory>-->
+        <resources>
+            <resource>
+                <!--复制war包到webapps目录下-->
+                <targetPath>/usr/local/tomcat/webapps</targetPath>
+                <directory>${project.build.directory}</directory>
+                <include>${project.build.finalName}.war</include>
+            </resource>
+        </resources>
+    </configuration>
+</plugin>
+```
+
+运行命令：
+
+> mvn clean install docker:build -Dmaven.test.skip=true
+
+## 2、部署SpringBoot使用Dockerfile
+
+在项目目录下新建Dockerfile文件
+
+`Dockerfile`
+
+```dockerfile
+FROM openjdk:8-jdk-alpine
+EXPOSE 8080
+
+VOLUME /tmp
+ADD wms-api.jar  /app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
+```xml
+<properties>
+    <!-- 镜像前缀 -->
+    <docker.image.prefix>zhanjixun</docker.image.prefix>
+</properties>
+<plugin>
+    <groupId>com.spotify</groupId>
+    <artifactId>docker-maven-plugin</artifactId>
+    <version>0.4.14</version>
+    <configuration>
+        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+        <imageTags>
+            <imageTag>${project.version}</imageTag>
+            <!--同时发布最新版-->
+            <imageTag>latest</imageTag>
+        </imageTags>
+        <dockerDirectory>${project.basedir}</dockerDirectory>
+        <resources>
+            <resource>
+                <targetPath>/</targetPath>
+                <directory>${project.build.directory}</directory>
+                <include>${project.build.finalName}.jar</include>
+            </resource>
+        </resources>
+    </configuration>
+</plugin>
+```
+
+运行命令：
+
+> mvn clean install docker:build -Dmaven.test.skip=true
