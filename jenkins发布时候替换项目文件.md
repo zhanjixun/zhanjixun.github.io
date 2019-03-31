@@ -31,28 +31,6 @@
 
 jenkins的流程是：git clone代码下来之后，执行以下脚本
 
-`/home/sh/replaceFiles.sh`
-
-```shell
-#!/bin/bash
-# 两个参数 遍历参数1目录 将所有文件复制（或覆盖）到参数2目录
-function replaceAllFile(){
-    for element in `ls $1`
-    do  
-        dir_or_file=$1"/"$element
-        target_file=$2"/"$element
-        if [ -d $dir_or_file ]
-        then 
-            replaceAllFile $dir_or_file
-        else
-            echo "$dir_or_file替换文件到$target_file"
-            cp -f $dir_or_file $target_file
-        fi  
-    done
-}
-
-```
-
 ```shell
 #生成临时文件夹
 tempdir=profiles$RANDOM
