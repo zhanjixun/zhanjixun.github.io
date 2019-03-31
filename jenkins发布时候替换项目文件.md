@@ -13,17 +13,15 @@
 
 在gitlab中创建一个新项目，用于存放配置文件，目录如下：
 
--- dev
-
-​	--db.properties
-
--- test
-
-​	--db.properties
-
--- prd
-
-​	--db.properties
+- dev
+  - db.properties
+  - redis.properties
+- test
+  - db.properties
+  - redis.properties
+- prd
+  - db.properties
+  - redis.properties
 
 这里只是大概给个例子，实际按自己项目的需要放置。
 
