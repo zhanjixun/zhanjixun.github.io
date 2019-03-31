@@ -61,7 +61,7 @@ tempdir=profiles$RANDOM
 git clone git@xxx.git ./$tempdir
 
 #替换资源文件
-/home/sh/replaceFiles.sh ./$tempdir/prd ./src/main/resources
+cp -rf ./$tempdir/prd/* ./src/main/resources
 
 #删除配置文件
 rm -rf ./$tempdir
