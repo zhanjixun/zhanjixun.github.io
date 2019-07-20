@@ -84,7 +84,7 @@ MySQL
 - 性能分析
 - 主从复制、读写分离、集群
 
-TOMCAT
+Tomcat
 
 Liunx
 
