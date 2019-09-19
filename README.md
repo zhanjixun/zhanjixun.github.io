@@ -63,6 +63,7 @@ Redis
 - redis分布式锁
 - 常见问题：缓存穿透、缓存雪崩、缓存击穿、缓存双写一致性
 - redis监控：monitor调试命令、info命令内容、图形化redis监控
+- redis与memcached的对比
 
 Nginx
 
