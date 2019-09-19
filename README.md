@@ -43,8 +43,6 @@ SpringBoot
 
 SpringCloud
 
-
-
 Dubbo
 
 - 分布式概念、分布式模块划分
@@ -86,7 +84,12 @@ MySQL
 - 性能分析
 - 主从复制、读写分离、集群
 
-Docker
+[Docker](https://blog.csdn.net/zhanjixun/article/details/100701530)
+
+- 基本使用
+- 镜像、容器、仓库概念
+- docker compose
+- docker swarm
 
 Tomcat
 
@@ -96,7 +99,8 @@ Liunx
 
 常见场景实现
 
-  SSO单点登录
+ SSO单点登录
+
 - 秒杀系统
 - 分布式Seesion管理
 - 分布式锁
