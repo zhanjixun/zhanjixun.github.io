@@ -8,18 +8,50 @@ redis与memcached的对比
 
 ### 3.1 ubuntu下安装Redis
 
-安装
+**安装**
 
 ```shell
 sudo apt-get install -y redis-server
 ```
 
-检查redis进程、查看端口
+**检查redis进程、查看端口**
 
 ```shell
 ps -aux|grep redis
 netstat -nlt|grep 6379
 ```
+
+**重启、停止、状态**
+
+```shell
+service redis restart
+service redis start
+service redis stop
+service redis status
+```
+
+**查看redis版本**
+
+```shell
+redis-server -v #查看服务端版本
+redis-cli -v    #查看客户端版本
+```
+
+**监听外部连接**
+
+默认安装了redis是只监听本机的连接，也就是只有本机能连接到redis服务器，如果外部需要访问，则需要修改配置文件`/etc/redis/redis.conf`
+
+```shell
+sudo vim /etc/redis/redis.conf  #需要使用root权限
+```
+
+找到`bind 127.0.0.1 ::1`并将其注释掉  `# bind 127.0.0.1 ::1`
+
+**修改redis服务器密码**
+
+默认安装redis是没有密码的，如果需要修改密码，同样需要修改上面那个配置文件
+
+找到`# requirepass foobared`，取消注释并修改fobared为自己的密码，如 `requirepass 123456`
 
 
 
