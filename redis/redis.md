@@ -8,6 +8,19 @@ redis与memcached的对比
 
 ### 3.1 ubuntu下安装Redis
 
+安装
+
+```shell
+sudo apt-get install -y redis-server
+```
+
+检查redis进程、查看端口
+
+```shell
+ps -aux|grep redis
+netstat -nlt|grep 6379
+```
+
 
 
 ### 3.2 window下安装Redis
