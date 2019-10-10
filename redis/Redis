@@ -1,7 +1,6 @@
 Redis
 - 安装以及使用，基本命令
 - redis五种数据类型及使用场景
-- 分布式中使用redis
 - 持久化原理及数据失效场景
 - redis内存管理：内存分配、内存压缩、过期数据回收策略、内存回收策略LRU/LFU
 - redis事务管理
@@ -14,7 +13,10 @@ Redis
 - redis监控：monitor调试命令、info命令内容、图形化redis监控
 - redis与memcached的对比
 
-
+# 高并发架构系列：Redis的基本介绍，五种数据类型及应用场景分析
+https://cloud.tencent.com/developer/article/1455047
+# redis 五种数据类型和应用场景
+https://blog.csdn.net/qq_41654985/article/details/82390875
 # redis常见应用场景 
 https://www.jianshu.com/p/40dbc78711c8
 # Redis 命令参考
