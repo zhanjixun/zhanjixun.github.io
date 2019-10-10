@@ -45,7 +45,7 @@ redis-cli -v    #查看客户端版本
 sudo vim /etc/redis/redis.conf  #需要使用root权限
 ```
 
-找到`bind 127.0.0.1 ::1`并将其注释掉  `# bind 127.0.0.1 ::1`
+找到`bind 127.0.0.1 ::1`并将其修改为  `bind 0.0.0.0`
 
 **修改redis服务器密码**
 
