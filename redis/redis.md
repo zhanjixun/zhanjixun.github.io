@@ -101,25 +101,17 @@ Redis中常用的数据类型有5中，它们分别是字符串（String）、�
 | 哈希结构 | 包含键值对的无序散列表                                       |                                                 |
 | 有序集合 | 有序集合，节点可以是字符串、整数或浮点数和分值，元素排序依据分值大小 |                                                 |
 
-
-
 ### 3.2 基本命令操作
 
-**测试连接**
+#### 3.2.1 基本操作
 
-```shell
-127.0.0.1:6379> ping
-PONG
-```
 
 **登录到redis服务器**
 
 ```shell
 #登录到本机
 redis-cli
-```
 
-```shell
 #登录到远程redis服务器
 redis-cli -h 192.168.0.100 -p 6379 -a 123456
 ```
@@ -140,6 +132,156 @@ OK
 ```
 
 > select index  #其中index为数据库下标索引 可用值为0~15
+
+**测试连接**
+
+```shell
+127.0.0.1:6379> ping
+PONG
+```
+
+#### 3.2.2 字符串类型操作
+
+**设置字符串键值对**
+
+```shell
+SET key value [EX seconds] [PX milliseconds] [NX|XX]
+```
+
+> 设置键key的值为value，如果key已经存在，会直接覆盖旧值。
+>
+> EX second              #可选参数,设置键的过期时间，单位秒
+>
+> PX millisecond       #设置键的过期时间，单位毫秒
+>
+> NX                           #当key不存在时候，才进行设置操作
+>
+> XX                           #当key存在时候，才进行设置操作
+
+```shell
+127.0.0.1:6379> set name zhanjixun
+OK
+127.0.0.1:6379> get name
+"zhanjixun"
+127.0.0.1:6379> set age 23 ex 5
+OK
+127.0.0.1:6379> get age
+"23"
+127.0.0.1:6379> get age
+(nil)
+127.0.0.1:6379> set name zhanjixun nx
+(nil)
+127.0.0.1:6379> set age 23 nx
+OK
+127.0.0.1:6379> set name zhanjixun xx
+OK
+```
+
+**获取字符串值**
+
+```shell
+GET key
+```
+
+> 获取一个字符串类型的储存的值。如果key不存在则返回特殊值nil。如果key储存的值不是字符串（如是列表），则返回一个错误。
+
+```shell
+127.0.0.1:6379> GET name
+(nil)
+127.0.0.1:6379> SET name zhanjixun
+OK
+127.0.0.1:6379> GET name
+"zhanjixun"
+127.0.0.1:6379> DEL name
+(integer) 1
+127.0.0.1:6379> LPUSH name zhanjixun jixun zjx
+(integer) 3
+127.0.0.1:6379> GET name
+(error) ERR Operation against a key holding the wrong kind of value
+```
+
+**删除键值对**
+
+```shell
+DEL key [key ...]
+```
+
+> 删除键值对，适用于所有数据类型。不存在的key会被忽略
+
+**计算字符串长度**
+
+```shell
+STRLEN key
+```
+
+> 计算字符串的长度，当 key 不存在时，返回0 ，当 key 储存的不是字符串值时，返回一个错误。
+
+```shell
+127.0.0.1:6379> SET name zhanjixun
+OK
+127.0.0.1:6379> strlen name
+(integer) 9
+127.0.0.1:6379> strlen none
+(integer) 0
+```
+
+**修改并返回旧值**
+
+```shell
+GETSET key value
+```
+
+> 将给定 key 的值设为 value ，并返回 key 的旧值(old value)。
+>
+> 当 key 存在但不是字符串类型时，返回一个错误。
+
+```shell
+127.0.0.1:6379> set name zhanjixun
+OK
+127.0.0.1:6379> getset name  jixun
+"zhanjixun"
+127.0.0.1:6379> get name
+"jixun"
+```
+
+**获取子串**
+
+```shell
+GETRANGE key start end
+```
+
+> 获取字符串的子串，截取范围为:[start,end] 
+>
+> 偏移量从0开始计数，0代表字符串第一位
+>
+> 负偏移量表示从字符串最后开始计数
+
+```shell
+127.0.0.1:6379> set name zhanjixun
+OK
+127.0.0.1:6379> getrange name 4 9
+"jixun"
+```
+
+**追加字符串**
+
+```shell
+APPEND key value
+```
+
+> 如果key存在并且是字符串类型，则追加value到key原来的值后面
+>
+> 如果key不存在，则设置key的值为value，相当于 set key value
+>
+> 返回追加之后字符串的长度
+
+#### 3.2.3 列表类型操作
+
+#### 3.2.4 集合类型操作
+
+#### 3.2.5 哈希结构类型操作
+
+#### 3.2.6 无序集合类型操作
 
 
 
