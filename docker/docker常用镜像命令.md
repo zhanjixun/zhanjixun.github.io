@@ -1,4 +1,16 @@
-# Docker常用镜像命令
+# Docker常用镜像使用命令
+
+### Portainer
+
+```shell
+docker run -d --name portainer \
+-p 9000:9000 --restart always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /data/volumns/portainer:/data \
+portainer/portainer:latest
+```
+
+> -v /var/run/docker.sock 是为了在容器内连接docker 获取docker的信息
 
 ### Registry
 
@@ -33,7 +45,7 @@ docker run -d --name gitlab -p 9000:9000 \
 gitlab/gitlab-ce:12.0.0-ce.0
 
 vim /data/volumns/gitlab/etc/gitlab.rb
-将# external_url 'GENERATED_EXTERNAL_URL' 修改为 external_url 'http://***:9000'
+将# external_url 'GENERATED_EXTERNAL_URL' 修改为 external_url 'http://192.168.1.201:9000'
 修改为自己的ip
 
 docker exec gitlab gitlab-ctl reconfigure
