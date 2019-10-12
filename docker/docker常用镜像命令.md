@@ -34,7 +34,7 @@ registry:2
 } 
 ```
 
-### gitlab
+### Gitlab
 
 ```shell
 docker run -d --name gitlab -p 9000:9000 \

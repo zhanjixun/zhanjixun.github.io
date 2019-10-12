@@ -1,4 +1,6 @@
-# Linux磁盘清理命令
+# Linux常用命令
+
+## 磁盘清理命令
 
 **查看文件系统磁盘使用情况**
 
@@ -19,8 +21,6 @@ du -sh * | sort -n
 du -lh --max-depth=1
 ```
 
-
-
 **文件查找**
 
 ```shell
@@ -28,5 +28,19 @@ du -lh --max-depth=1
  find / -size +500M
  
  
+```
+
+## 进程查看命令
+
+**搜索进程**
+
+```shell
+ps -ef | grep tomcat
+```
+
+**查看端口**
+
+```shell
+netsta -an | grep 8080
 ```
 
