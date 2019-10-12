@@ -60,12 +60,19 @@ Redis
 - redis主从复制
 - redis哨兵机制
 - redis cluster集群
-- redis分布式锁
+- redis实现分布式锁
 - 常见问题：缓存穿透、缓存雪崩、缓存击穿、缓存双写一致性
 - redis监控：monitor调试命令、info命令内容、图形化redis监控
 - redis与memcached的对比
 
 Nginx
+
+- Nginx的安装、常用命令和配置文件
+- 反向代理
+- 负载均衡
+- 动静分离
+- 高可用集群
+- Nginx原理
 
 MongoDB
 
