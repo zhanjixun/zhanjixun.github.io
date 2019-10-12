@@ -23,7 +23,7 @@
 
 
 
-**nginx主程序目录**
+**Nginx主程序目录**
 
 ```shell
 $ tree /etc/nginx  
@@ -33,10 +33,10 @@ $ tree /etc/nginx
 ├── fastcgi_params
 ├── koi-utf
 ├── koi-win
-├── mime.types                                                  #nginx的mime文件(识别请求信息类型)
+├── mime.types                                                  #Nginx的mime文件(识别请求信息类型)
 ├── modules-available
 ├── modules-enabled
-├── nginx.conf                                                  #nginx的主配置文件
+├── nginx.conf                                                  #Nginx的主配置文件
 ├── proxy_params
 ├── scgi_params
 ├── sites-available
@@ -52,7 +52,7 @@ $ tree /etc/nginx
 
 
 
-**nginx的默认站点路径**
+**Nginx的默认站点路径**
 
 ```shell
 $ tree /usr/share/nginx
