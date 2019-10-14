@@ -26,7 +26,8 @@ REMOTE_SERVER=192.168.1.201                #修改远程主机的IP或者hostnam
 
 LOG_FILE=/data/logs/${APP_FILE##*/}.log
 echo "正在将${LOCAL_JAR_FILE}传输到${REMOTE_SERVER}的${APP_FILE}..."
-scp ${LOCAL_JAR_FILE} root@${REMOTE_SERVER} ${APP_FILE}
+scp ${LOCAL_JAR_FILE} root@${REMOTE_SERVER}:${APP_FILE}
+ssh root@${REMOTE_SERVER} "ls -lh --time-style '+%Y-%m-%d %H:%M:%S' /opt/springboot-jar/ | grep ${APP_FILE##*/}"
 pid=`ssh root@${REMOTE_SERVER} ps -ef|grep ${APP_FILE}|grep -v grep|awk '{print $2}'`
 if [ -n "${pid}" ]; then
 	echo "正在停止${APP_FILE},进程PID为${pid}"
