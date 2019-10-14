@@ -1,8 +1,8 @@
 # SpringMVC实现Session共享
 
-`pom.xml`添加项目依赖
+## 1.`pom.xml`添加项目依赖
 
-注意这个版本号有坑
+注意这个两个项目的版本号不对会触发各种彩蛋，调了好久才调出个没问题的。
 
 ```xml
 <dependency>
@@ -17,7 +17,7 @@
 </dependency>
 ```
 
-`web.xml`添加拦截器
+## 2.`web.xml`添加拦截器
 
 ```xml
 <filter>
@@ -34,7 +34,7 @@
 </context-param>
 ```
 
-添加`spring-session-redis.xml`配置文件
+## 3.添加`spring-session-redis.xml`配置文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -72,4 +72,8 @@ redis.password=123456
 
 
 
-最后， 启动项目即可
+演示代码:[ https://github.com/zhanjixun/spring-session-redis-demo ]( https://github.com/zhanjixun/spring-session-redis-demo )
+
+## 4.测试
+
+项目中添加了jetty插件，这里启动两个jetty用于模拟分布式部署，一个jetty以8081端口启动，另一个以8082端口启动。先打开[http://localhost:8081/home](http://localhost:8081/home) 和 [http://localhost:8082/home](http://localhost:8081/home) ，都被重定向login页面了，先在8081登录跳回home页面，打开http://localhost:8082/home 能够正常显示用户信息，测试通过。
