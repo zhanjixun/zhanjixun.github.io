@@ -20,6 +20,11 @@ sudo yum update
 sudo yum install –y docker
 sudo systemctl enable docker
 sudo systemctl start docker
+
+#上面命令安装的docker版本是1.13.1 安装最新发行版使用以下命令
+yum install -y yum-utils  device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce
 ```
 
 由于在linux下我们一般不是使用root账号登录，运行docker会有权限问题，需要对当前用户赋予docker的权限
