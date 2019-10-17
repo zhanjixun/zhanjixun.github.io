@@ -75,6 +75,12 @@ redis-server.exe --service-install redis.windows.conf --loglevel verbose
 docker run -d --name redis -p 6379:6379 redis:3.2 redis-server --appendonly yes
 ```
 
+如果需要开启密码
+
+```shell
+ docker run -d --name redis -p 6379:6379 redis:3.2 --requirepass "123456"
+```
+
 ## 4.可视化管理工具RedisDesktopManager
 
 新版的RedisDesktopManager已经不再能免费使用，在github上能找到的最后一个免费安装包是`0.9.3`版本。见[https://github.com/uglide/RedisDesktopManager/releases?after=0.9.4](https://github.com/uglide/RedisDesktopManager/releases?after=0.9.4)，下载地址为：
