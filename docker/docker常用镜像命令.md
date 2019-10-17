@@ -3,10 +3,20 @@
 ### Portainer
 
 ```shell
+#单机安装
 docker run -d --name portainer \
 -p 9000:9000 --restart always \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /data/volumns/portainer:/data \
+portainer/portainer:latest
+
+#集群安装
+docker service create \
+--replicas 1 \
+--name portainer --publish 9000:9000 \
+--constraint 'node.role == manager' \
+--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+--mount type=bind,src=/data/volumns/portainer,dst=/data \
 portainer/portainer:latest
 ```
 
