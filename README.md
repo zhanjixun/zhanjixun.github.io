@@ -201,4 +201,6 @@ Liunx
 
 参考：
 
-​	[https://github.com/xingshaocheng/architect-awesome]( https://github.com/xingshaocheng/architect-awesome ) 
+- [https://github.com/xingshaocheng/architect-awesome]( https://github.com/xingshaocheng/architect-awesome ) 
+- [https://github.com/doocs/advanced-java](https://github.com/doocs/advanced-java)
+
