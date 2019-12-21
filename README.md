@@ -206,4 +206,5 @@ Liunx
 - [《吊打面试官》系列](https://blog.csdn.net/qq_35190492/category_9424379.html)
 - [互联网一线大厂面试+学习指南](https://github.com/AobingJava/JavaFamily)
 - [8年经验面试官详解 Java 面试秘诀](https://blog.csdn.net/csdnnews/article/details/103154693)
+- [Java面试全解析——505道面试题详解](https://blog.csdn.net/sufu1065/article/details/102709423)
 
