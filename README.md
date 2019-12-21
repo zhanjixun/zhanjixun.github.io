@@ -202,8 +202,8 @@ Liunx
 参考：
 
 - [后端架构师技术图谱](https://github.com/xingshaocheng/architect-awesome) 
-- [https://github.com/doocs/advanced-java](https://github.com/doocs/advanced-java)
-- [https://blog.csdn.net/qq_35190492/category_9424379.html](https://blog.csdn.net/qq_35190492/category_9424379.html)
-- [https://github.com/AobingJava/JavaFamily](https://github.com/AobingJava/JavaFamily)
-- [https://blog.csdn.net/csdnnews/article/details/103154693](https://blog.csdn.net/csdnnews/article/details/103154693)
+- [互联网 Java 工程师进阶知识完全扫盲](https://github.com/doocs/advanced-java)
+- [《吊打面试官》系列](https://blog.csdn.net/qq_35190492/category_9424379.html)
+- [互联网一线大厂面试+学习指南](https://github.com/AobingJava/JavaFamily)
+- [8年经验面试官详解 Java 面试秘诀](https://blog.csdn.net/csdnnews/article/details/103154693)
 
