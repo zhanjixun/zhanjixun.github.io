@@ -1,6 +1,10 @@
 # 系统化知识体系
 
-数据结构
+[TOC]
+
+
+
+## 数据结构
 
 - 队列
 - 集合
@@ -18,7 +22,7 @@
 - 图
 - bitSet
 
-算法
+## 算法
 
 - 排序算法
   - 冒泡排序
@@ -43,13 +47,14 @@
 - 最小生成树算法
 - 最短路径算法
 
-JDK基础
+## JDK基础
 
 - 集合类
-- 多线程、高并发
 - IO、NIO
 
-JVM
+## 多线程与高并发
+
+## JVM
 
 - JVM 内存结构
 - HotSpot 虚拟机对象探秘
@@ -62,38 +67,38 @@ JVM
 - 类加载的过程
 - 类加载器
 
-mybatis
+## Mybatis
 
 - 整体架构
 - 源码解析
 - 自写Mybatis
 
-Spring
+## Spring
 
 - ioc
 - aop
 - tx
 
-Spring MVC
+## Spring MVC
 
 - 11步执行流程图
 - 六大组件
 
-SpringBoot
+## SpringBoot
 
 - 自动配置源码解析
 - yml文件加载过程
 - 手写Stater
 
-SpringCloud
+## SpringCloud
 
-Dubbo
+## Dubbo
 
 - 分布式概念、分布式模块划分
 - Dubbo高可用：容错机制、服务降级、服务限流、多版本控制、多注册中心
 - 源码分析：Dubbo的SPI、对Spring配置文件的解析、Provider的服务暴露、consumer的服务消费
 
-Redis
+## Redis
 
 - 安装以及使用，基本命令
 - redis五种数据类型及使用场景
@@ -109,7 +114,7 @@ Redis
 - redis监控：monitor调试命令、info命令内容、图形化redis监控
 - redis与memcached的对比
 
-Nginx
+## Nginx
 
 - Nginx的安装、常用命令和配置文件
 - 反向代理
@@ -118,21 +123,21 @@ Nginx
 - 高可用集群
 - Nginx原理
 
-MongoDB
+## MongoDB
 
-ActiveMQ
+## ActiveMQ
 
-RabbitMQ
+## RabbitMQ
 
-RocketMQ
+## RocketMQ
 
-kafka
+## kafka
 
-Zookeeper
+## Zookeeper
 
-Netty
+## Netty
 
-MySQL
+## MySQL
 
 - 架构执行流程
 - SQL语句顺序和解析顺序
@@ -141,18 +146,20 @@ MySQL
 - 性能分析
 - 主从复制、读写分离、集群
 
-Docker   :   [虚拟化容器技术：Docker](https://blog.csdn.net/zhanjixun/article/details/100701530)
+## Docker  
+
+[虚拟化容器技术：Docker](https://blog.csdn.net/zhanjixun/article/details/100701530)
 
 - 基本使用
 - 镜像、容器、仓库概念
 - docker compose
 - docker swarm
 
-Tomcat
+## Tomcat
 
-Liunx
+## Liunx
 
-设计模式
+## 设计模式
 
 - 设计模式的六大原则
   - 开闭原则：对扩展开放,对修改关闭，多使用抽象类和接口
@@ -190,7 +197,7 @@ Liunx
     - 解释器模式
 - 应用场景
 
-常见场景实现
+## 常见场景实现
 
 - SSO单点登录
 

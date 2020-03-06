@@ -25,9 +25,7 @@ du -lh --max-depth=1
 
 ```shell
  #查找大于500M的文件
- find / -size +500M
- 
- 
+ find / -size +500M 
 ```
 
 ## 进程查看命令
