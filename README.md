@@ -216,4 +216,5 @@
 - [Java面试全解析——505道面试题详解](https://blog.csdn.net/sufu1065/article/details/102709423)
 - [这几道Java集合框架面试题在面试中几乎必问](https://blog.csdn.net/weixin_34352005/article/details/87950414)
 - [Java学习+面试指南](https://javaguide.cn/)
+- [2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总](https://github.com/0voice/interview_internal_reference)
 
