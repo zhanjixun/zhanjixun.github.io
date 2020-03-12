@@ -51,7 +51,7 @@ KMP算法
 
 ## Java基础
 
-- 集合类
+- ArrayList、LinkedList
 - HashMap、ConcurrentHashMap
 - IO、NIO
 
