@@ -25,16 +25,16 @@
 #### 3、代码实现
 
 ```java
-public static void bubbleSort(int[] a) {
+public static void bubbleSort(int[] array) {
     //外层循环控制比较的次数
-    for (int i = 0; i < a.length - 1; i++) {
+    for (int i = 0; i < array.length - 1; i++) {
         //内层循环控制到达位置
-        for (int j = 0; j < a.length - i - 1; j++) {
+        for (int j = 0; j < array.length - i - 1; j++) {
             //前面的元素比后面大就交换
-            if (a[j] > a[j + 1]) {
-                int temp = a[j];
-                a[j] = a[j + 1];
-                a[j + 1] = temp;
+            if (array[j] > array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
             }
         }
     }
@@ -69,53 +69,198 @@ public static void bubbleSort(int[] a) {
 
 #### 3、代码实现
 
+```java
+public static void quickSort(int[] array, int low, int high) {
+    //已经排完
+    if (low >= high) {
+        return;
+    }
+    int left = low;
+    int right = high;
+
+    //保存基准值
+    int pivot = array[left];
+    while (left < right) {
+        //从后向前找到比基准小的元素
+        while (left < right && array[right] >= pivot) {
+            right--;
+        }
+        array[left] = array[right];
+        //从前往后找到比基准大的元素
+        while (left < right && array[left] <= pivot) {
+            left++;
+        }
+        array[right] = array[left];
+    }
+    // 放置基准值，准备分治递归快排
+    array[left] = pivot;
+    quickSort(array, low, left - 1);
+    quickSort(array, left + 1, high);
+}
+```
+
+
+
 ### 1.3 选择排序
 
 #### 1、基本思想
 
+选择排序的基本思想：比较 + 交换。
+
+在未排序序列中找到最小（大）元素，存放到未排序序列的起始位置。在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。
+
 #### 2、算法描述
 
+①. 从待排序序列中，找到关键字最小的元素； 
+
+②. 如果最小元素不是待排序序列的第一个元素，将其和第一个元素互换； 
+
+③. 从余下的 N - 1 个元素中，找出关键字最小的元素，重复①、②步，直到排序结束。
+
 #### 3、代码实现
+
+```java
+public static void simpleSelectionSort(int[] a) {
+    for (int i = 0; i < a.length; i++) {
+        int min = i;
+        //选出之后待排序中值最小的位置
+        for (int j = i + 1; j < a.length; j++) {
+            if (a[j] < a[min]) {
+                min = j;
+            }
+        }
+        //最小值不等于当前值时进行交换
+        if (min != i) {
+            int temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
+        }
+    }
+}
+```
+
+
 
 ### 1.4 堆排序
 
 #### 1、基本思想
 
+基本思想——堆排序是一种树形选择排序，是对直接排序的有效改进。
+
 #### 2、算法描述
 
+
+
 #### 3、代码实现
+
+
 
 ### 1.5 插入排序
 
 #### 1、基本思想
 
+基本思想——在要排序的一组数中，假设前面（n-1）[n>=2]个数已经是排好顺序的，现在要把第n个数插到前面的有序数中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200312154939813.gif)
+
 #### 2、算法描述
 
+一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：
+
+①. 从第一个元素开始，该元素可以认为已经被排序
+
+②. 取出下一个元素，在已经排序的元素序列中从后向前扫描
+
+③. 如果该元素（已排序）大于新元素，将该元素移到下一位置
+
+④. 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
+
+⑤. 将新元素插入到该位置后
+
+⑥. 重复步骤②~⑤
+
 #### 3、代码实现
+
+```java
+public static void insertSort(int[] a) {
+    for (int i = 0; i < a.length - 1; i++) {
+        for (int j = i + 1; j > 0; j--) {
+            if (a[j] < a[j - 1]) {
+                int temp = a[j];
+                a[j] = a[j - 1];
+                a[j - 1] = temp;
+            }
+        }
+    }
+}
+```
+
+
 
 ### 1.6 希尔排序
 
 #### 1、基本思想
 
+基本思想——先将要排序的一组数按某个增量d（n/2,n为要排序数的个数）分成若干组，每组记录的下标相差d，对每组中全部元素进行直接插入排序，然后再用一个较小的增量(d/2)对它进行分组，在每组中再进行直接插入排序。当增量减至1时，进行直接插入排序后，排序完成。
+
 #### 2、算法描述
 
+①. 选择一个增量序列t1，t2，…，tk，其中ti>tj，tk=1；（**一般初次取数组半长，之后每次再减半，直到增量为1**） 
+
+②. 按增量序列个数k，对序列进行k 趟排序； 
+
+③. 每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。
+
 #### 3、代码实现
+
+```java
+public static void shellSort(int[] a) {
+    int length = a.length;
+    int h = 1;
+    while (h < length / 3) h = 3 * h + 1;
+    for (; h >= 1; h /= 3) {
+        for (int i = 0; i < a.length - h; i += h) {
+            for (int j = i + h; j > 0; j -= h) {
+                if (a[j] < a[j - h]) {
+                    int temp = a[j];
+                    a[j] = a[j - h];
+                    a[j - h] = temp;
+                }
+            }
+        }
+    }
+}
+```
+
+
 
 ### 1.7 归并排序
 
 #### 1、基本思想
 
+基本思想——归并（Merge）排序法是将两个（或两个以上）有序表合并成一个新的有序表，即把带排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列。
+
 #### 2、算法描述
 
+
+
 #### 3、代码实现
+
+
 
 ### 1.8 基数排序
 
 #### 1、基本思想
 
+基本思想——将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。
+
 #### 2、算法描述
 
+
+
 #### 3、代码实现
+
+
 
 
 ## 二、算法复杂度
