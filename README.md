@@ -22,7 +22,8 @@
 
 ## 算法
 
-### Java中常用的8种排序算法
+[Java中常用的8种排序算法](https://gitee.com/zhanjixun/doc/blob/master/数据结构与算法/Java中常用的8种排序算法.md)
+
 二分查找
 
 布隆过滤器
@@ -164,7 +165,7 @@ KMP算法
 
 ## 设计模式
 
-[23种设计模式](https://gitee.com/zhanjixun/doc/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+[23种设计模式](https://gitee.com/zhanjixun/doc/blob/master/设计模式/23种设计模式.md)
 
 ## 常见场景实现
 
