@@ -164,7 +164,7 @@ KMP算法
 
 ## 设计模式
 
-### 23种设计模式
+[23种设计模式](https://gitee.com/zhanjixun/doc/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 ## 常见场景实现
 
