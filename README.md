@@ -181,7 +181,6 @@ KMP算法
 - [《吊打面试官》系列](https://blog.csdn.net/qq_35190492/category_9424379.html)
 - [互联网一线大厂面试+学习指南](https://github.com/AobingJava/JavaFamily)
 - [8年经验面试官详解 Java 面试秘诀](https://blog.csdn.net/csdnnews/article/details/103154693)
-- [Java面试全解析——505道面试题详解](https://blog.csdn.net/sufu1065/article/details/102709423)
 - [这几道Java集合框架面试题在面试中几乎必问](https://blog.csdn.net/weixin_34352005/article/details/87950414)
 - [Java学习+面试指南](https://javaguide.cn/)
 - [2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总](https://github.com/0voice/interview_internal_reference)
