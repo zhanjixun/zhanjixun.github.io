@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/blog/',
+    base: '/doc/',
     title: 'Java系统化知识体系',
     description: 'Vuepress blog demo',
     themeConfig: {
