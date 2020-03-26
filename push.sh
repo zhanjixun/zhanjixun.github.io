@@ -2,6 +2,10 @@ set -e
 
 set -v
 
+rm -rf node_modules
+
+rm -rf ./docs/.vuepress/dist
+
 git pull
 
 git add -A
