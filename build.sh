@@ -1,3 +1,7 @@
+set -e
+
+set -v
+
 #切回主干
 git checkout master
 
