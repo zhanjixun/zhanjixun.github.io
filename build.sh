@@ -1,19 +1,8 @@
+set -e
+
+set -v
 #切回主干
 git checkout master
-
-remoteDeployBranch=$(git branch -a | grep remotes/origin/deploy)
-if [ -n "$remoteDeployBranch" ]; then
-    # 删除远程发布分支
-    git push origin --delete deploy
-fi
-
-echo '结束'
-
-localDeployBranch=$(git branch | grep deploy)
-if [ -n "$localDeployBranch" ]; then
-    # 删除本地发布分支
-    git branch -d deploy
-fi
 
 # 创建发布分支
 git checkout -b deploy
