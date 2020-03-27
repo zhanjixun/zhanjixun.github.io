@@ -30,7 +30,7 @@ public static int binarySearch(int[] arr,int low,int high,int key) {
 }
 ```
 
-### 2) 顺序实现
+### 2) while循环实现
 
 ```java
 public static int binarySearch(int[] arr,int key) {
