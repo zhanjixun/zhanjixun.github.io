@@ -8,6 +8,8 @@ git checkout master
 #sh push.sh
 #强制复制一条分支出来
 git branch -C deploy
+#切换到发布分支
+git checkout deploy
 #构建博客
 npm run docs:build
 #提交博客内容
