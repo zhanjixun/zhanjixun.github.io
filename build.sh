@@ -5,7 +5,7 @@ set -v
 #切回主干
 git checkout master
 #先提交主干内容
-sh push.sh
+#sh push.sh
 #强制复制一条分支出来
 git branch -C deploy
 #构建博客
