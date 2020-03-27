@@ -2,6 +2,8 @@ set -e
 
 set -v
 
+rm -rf .idea
+
 rm -rf node_modules
 
 rm -rf ./docs/.vuepress/dist

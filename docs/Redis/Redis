@@ -21,3 +21,4 @@
 [redis常见应用场景](https://www.jianshu.com/p/40dbc78711c8)
 [Redis 命令参考](http://doc.redisfans.com/)
 [几率大的Redis面试题（含答案）](https://blog.csdn.net/Butterfly_resting/article/details/89668661)
+[Redis（二）：内存淘汰策略、持久化方式、事务、主从复制](https://blog.csdn.net/a745233700/article/details/85413179)
