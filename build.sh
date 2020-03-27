@@ -12,6 +12,8 @@ git branch -C deploy
 git checkout deploy
 #构建博客
 npm run docs:build
+#删除构建缓存
+rm -rf node_modules
 #提交博客内容
 git add docs/.vuepress/dist
 #提交博客内容
