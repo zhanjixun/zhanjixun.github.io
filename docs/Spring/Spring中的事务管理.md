@@ -2,7 +2,7 @@
 
 Spring事务的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。真正的数据库层的事务提交和回滚是通过`binlog`或者`redo log`实现的。
 
-## （1）Spring事务的种类：
+## （1）Spring事务的种类
 
 spring支持编程式事务管理和声明式事务管理两种方式：
 
@@ -18,7 +18,7 @@ spring支持编程式事务管理和声明式事务管理两种方式：
 
 声明式事务管理要优于编程式事务管理，这正是spring倡导的非侵入式的开发方式，使业务代码不受污染，只要加上注解就可以获得完全的事务支持。唯一不足地方是，最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。
 
-## （2）spring的事务传播行为：
+## （2）spring的事务传播行为
 
 spring事务的传播行为说的是，当多个事务同时存在的时候，spring如何处理这些事务的行为。
 
@@ -50,27 +50,23 @@ spring事务的传播行为说的是，当多个事务同时存在的时候，sp
 
 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则按REQUIRED属性执行。
 
-## （3）Spring中的隔离级别：
+## （3）Spring中的隔离级别
 
-① ISOLATION_DEFAULT：
+① ISOLATION_DEFAULT：这是个 PlatfromTransactionManager 默认的隔离级别，使用数据库默认的事务隔离级别。
 
-这是个 PlatfromTransactionManager 默认的隔离级别，使用数据库默认的事务隔离级别。
+② ISOLATION_READ_UNCOMMITTED：**读未提交**，允许另外一个事务可以看到这个事务未提交的数据。
 
-② ISOLATION_READ_UNCOMMITTED：
+③ ISOLATION_READ_COMMITTED：**读已提交**，保证一个事务修改的数据提交后才能被另一事务读取，而且能看到该事务对已有记录的更新。
 
-读未提交，允许另外一个事务可以看到这个事务未提交的数据。
+④ ISOLATION_REPEATABLE_READ：**可重复读**，保证一个事务修改的数据提交后才能被另一事务读取，但是不能看到该事务对已有记录的更新。
 
-③ ISOLATION_READ_COMMITTED：
-
-读已提交，保证一个事务修改的数据提交后才能被另一事务读取，而且能看到该事务对已有记录的更新。
-
-④ ISOLATION_REPEATABLE_READ：
-
-可重复读，保证一个事务修改的数据提交后才能被另一事务读取，但是不能看到该事务对已有记录的更新。
-
-⑤ ISOLATION_SERIALIZABLE：
-
-一个事务在执行的过程中完全看不到其他事务对数据库所做的更新。
+⑤ ISOLATION_SERIALIZABLE：**串行化**，一个事务在执行的过程中完全看不到其他事务对数据库所做的更新。
 
  
+
+参考：
+
+https://blog.csdn.net/weixin_39625809/article/details/80707695
+
+https://segmentfault.com/a/1190000013341344
 
