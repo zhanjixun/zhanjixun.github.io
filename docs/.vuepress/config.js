@@ -5,7 +5,7 @@ module.exports = {
     themeConfig: {
         repo: 'https://www.vuepress.cn/',
         repoLabel: 'VuePress',
-        lastUpdated: '上次更新：',
+        lastUpdated: '上次更新',
         nav: [
             {text: '主页', link: '/'},
             {text: '技术体系', link: '/总纲'},
