@@ -17,5 +17,6 @@ module.exports = {
     markdown: {
         //代码块显示行号
         lineNumbers: true
-    }
+    },
+    plugins: ['@vuepress/back-to-top']
 };
