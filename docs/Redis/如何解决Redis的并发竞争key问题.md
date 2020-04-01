@@ -22,7 +22,7 @@
 
  
 
-> 系统A key 1 {valueA 3:00}
+系统A key 1 {valueA 3:00}
 
 系统B key 1 {valueB 3:05}
 
