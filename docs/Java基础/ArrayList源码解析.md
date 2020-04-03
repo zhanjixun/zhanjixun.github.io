@@ -238,4 +238,369 @@ public void clear() {
 - `元素查改快`，因为可以使用下标访问。
 - 元素可重复，可以为NULL。
 
-后续：[深入ArrayList看fast-fail机制](https://www.cnblogs.com/myseries/p/10877362.html)
+
+
+------
+
+
+
+# ArrayList线程安全的问题
+
+## 为什么说ArrayList不是线程安全？
+
+```java
+public boolean add(E e) {
+    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    elementData[size++] = e;
+    return true;
+}
+```
+
+- 数组越界问题
+
+1. 列表大小为9，即size=9
+2. 线程A开始进入add方法，这时它获取到size的值为9，调用ensureCapacityInternal方法进行容量判断。
+3. 线程B此时也进入add方法，它获取到size的值也为9，也开始调用ensureCapacityInternal方法。
+4. 线程A发现需求大小为10，而elementData的大小就为10，可以容纳。于是它不再扩容，返回。
+5. 线程B也发现需求大小为10，也可以容纳，返回。
+6. 线程A开始进行设置值操作， elementData[size++] = e 操作。此时size变为10。
+7. 线程B也开始进行设置值操作，它尝试设置elementData[10] = e，而elementData没有进行过扩容，它的下标最大为9。于是此时会报出一个数组越界的异常`ArrayIndexOutOfBoundsException`。
+
+- NULL值问题
+
+`elementData[size++] = e`不是一个原子操作：
+
+1. elementData[size] = e;
+2. size = size + 1;
+
+逻辑：
+
+1. 列表大小为0，即size=0
+2. 线程A开始添加一个元素，值为A。此时它执行第一条操作，将A放在了elementData下标为0的位置上。
+3. 接着线程B刚好也要开始添加一个值为B的元素，且走到了第一步操作。此时线程B获取到size的值依然为0，于是它将B也放在了elementData下标为0的位置上。
+4. 线程A开始将size的值增加为1
+5. 线程B开始将size的值增加为2
+
+这样线程AB执行完毕后，理想中情况为size为2，elementData下标0的位置为A，下标1的位置为B。而实际情况变成了size为2，elementData下标为0的位置变成了B，下标1的位置上什么都没有。并且后续除非使用set方法修改此位置的值，否则将一直为null，因为size为2，添加元素时会从下标为2的位置上开始。
+
+## 如何解决线程安全问题
+
+ArrayList -> Vector -> SynchronizedList -> CopyOnWriteArrayList
+
+多线程环境下使用ArrayList 会发生线程安全问题，如下会抛出`java.util.ConcurrentModificationException`异常
+
+```java
+List<String> list = new ArrayList<>();
+for (int i = 1; i <= 10; i++) {
+    new Thread(() -> {
+        list.add(UUID.randomUUID().toString().substring(0, 8));
+        System.out.println(list);
+    }, "Thread " + i).start();
+}
+```
+
+方案1：使用`Vector`，[Vector为什么是线程安全的？](#vector)
+
+```java
+List<String> list = new Vector<>();
+for (int i = 1; i <= 10; i++) {
+    new Thread(() -> {
+        list.add(UUID.randomUUID().toString().substring(0, 8));
+        System.out.println(list);
+    }, "Thread " + i).start();
+}
+```
+
+方案2：使用`Collections.synchronizedList()`，[实现原理](#synchronizedList)
+
+```java
+List<String> list = Collections.synchronizedList(new ArrayList<>());
+for (int i = 1; i <= 10; i++) {
+    new Thread(() -> {
+        list.add(UUID.randomUUID().toString().substring(0, 8));
+        System.out.println(list);
+    }, "Thread " + i).start();
+}
+```
+
+方案3：使用`CopyOnWriteArrayList`，[CopyOnWriteArrayList是怎么实现线程安全的？](#CopyOnWriteArrayList)
+
+```java
+List<String> list = new CopyOnWriteArrayList<>();
+for (int i = 1; i <= 10; i++) {
+    new Thread(() -> {
+        list.add(UUID.randomUUID().toString().substring(0, 8));
+        System.out.println(list);
+    }, "Thread " + i).start();
+}
+```
+
+## <span id="vector">Vector为什么是线程安全的？</span>
+
+Vector的实现跟ArrayList相似，它实现线程的方式是将所有方法加上`synchronized`关键字，包括`get()`、`indexOf()`和`contains`等这种非修改操作方法。这样会造成Vector的性能严重下降。
+
+### 类声明
+
+```java
+public class Vector<E> extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+```
+
+### 成员对象
+
+```java
+//存放数据的对象数组
+protected Object[] elementData;
+
+//存放元素个数，相当于ArrayList的size
+protected int elementCount;
+
+//记录这个list结构修改的次数
+protected int capacityIncrement;
+```
+
+### 构造器
+
+```java
+public Vector(int initialCapacity, int capacityIncrement) {
+    super();
+    if (initialCapacity < 0)
+        throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+    this.elementData = new Object[initialCapacity];
+    this.capacityIncrement = capacityIncrement;
+}
+
+public Vector(int initialCapacity) {
+    this(initialCapacity, 0);
+}
+//无参构造器默认初始化10长度
+public Vector() {
+    this(10);
+}
+
+public Vector(Collection<? extends E> c) {
+    elementData = c.toArray();
+    elementCount = elementData.length;
+    // c.toArray might (incorrectly) not return Object[] (see 6260652)
+    if (elementData.getClass() != Object[].class)
+        elementData = Arrays.copyOf(elementData, elementCount, Object[].class);
+}
+```
+
+### 增删改操作
+
+都是给方法加上`synchronized`关键字实现线程安全
+
+```java
+//尾插增加元素
+public synchronized boolean add(E e) {
+    modCount++;
+    ensureCapacityHelper(elementCount + 1);
+    elementData[elementCount++] = e;
+    return true;
+}
+
+//定位增加元素
+public void add(int index, E element) {
+    insertElementAt(element, index);
+}
+
+//删除元素
+public boolean remove(Object o) {
+    return removeElement(o);
+}
+
+public synchronized void insertElementAt(E obj, int index) {
+    modCount++;
+    if (index > elementCount) {
+        throw new ArrayIndexOutOfBoundsException(index + " > " + elementCount);
+    }
+    ensureCapacityHelper(elementCount + 1);
+    System.arraycopy(elementData, index, elementData, index + 1, elementCount - index);
+    elementData[index] = obj;
+    elementCount++;
+}
+
+public synchronized boolean removeElement(Object obj) {
+    modCount++;
+    int i = indexOf(obj);
+    if (i >= 0) {
+        removeElementAt(i);
+        return true;
+    }
+    return false;
+}
+
+//修改元素
+public synchronized E set(int index, E element) {
+    if (index >= elementCount)
+        throw new ArrayIndexOutOfBoundsException(index);
+
+    E oldValue = elementData(index);
+    elementData[index] = element;
+    return oldValue;
+}
+```
+
+### 查询操作
+
+查询操作也加上了`synchronized`关键字
+
+```java
+public synchronized E get(int index) {
+    if (index >= elementCount)
+        throw new ArrayIndexOutOfBoundsException(index);
+    return elementData(index);
+}
+
+public int indexOf(Object o) {
+    return indexOf(o, 0);
+}
+
+public synchronized int indexOf(Object o, int index) {
+    if (o == null) {
+        for (int i = index ; i < elementCount ; i++)
+            if (elementData[i]==null)
+                return i;
+    } else {
+        for (int i = index ; i < elementCount ; i++)
+            if (o.equals(elementData[i]))
+                return i;
+    }
+    return -1;
+}
+```
+
+## <span id="synchronizedList">同步列表synchronizedList</span>
+
+`java.util.Collections`中提供了很多集合操作的工具方法，其中就有线程安全的，主要有这些方法：
+
+```java
+Collections. synchronizedCollection()
+Collections. synchronizedList()
+Collections. synchronizedSet()
+
+Collections. synchronizedMap()
+
+Collections. synchronizedSortedMap()
+Collections. synchronizedSortedSet()
+   
+Collections. synchronizedNavigableMap()
+Collections. synchronizedNavigableSet()
+```
+
+这些工具方法实现线程安全的原理就是使用一个内部类继承封装集合类，用`synchronized`关键字将原来集合相应的方法锁起来操作。以下抽取部分代码一睹真容：
+
+```java
+static class SynchronizedCollection<E> implements Collection<E>, Serializable {
+    final Collection<E> c;  // Backing Collection
+    //同步锁的对象
+    final Object mutex;     // Object on which to synchronize
+
+    SynchronizedCollection(Collection<E> c) {
+        this.c = Objects.requireNonNull(c);
+        mutex = this;
+    }
+
+    SynchronizedCollection(Collection<E> c, Object mutex) {
+        this.c = Objects.requireNonNull(c);
+        this.mutex = Objects.requireNonNull(mutex);
+    }
+
+    public int size() {
+        synchronized (mutex) {return c.size();}
+    }
+    
+    public boolean isEmpty() {
+        synchronized (mutex) {return c.isEmpty();}
+    }
+    
+    public boolean contains(Object o) {
+        synchronized (mutex) {return c.contains(o);}
+    }
+
+
+    public boolean add(E e) {
+        synchronized (mutex) {return c.add(e);}
+    }
+    public boolean remove(Object o) {
+        synchronized (mutex) {return c.remove(o);}
+    }
+  
+}
+```
+
+## <span id="CopyOnWriteArrayList">CopyOnWriteArrayList是怎么实现线程安全的</span>
+
+### 写入时复制（Copy-On-Write）思想
+
+写入时复制（CopyOnWrite，简称COW）思想是计算机程序设计领域中的一种优化策略。其核心思想是，如果有多个调用者（Callers）同时要求相同的资源（如内存或者是磁盘上的数据存储），他们会共同获取相同的指针指向相同的资源，直到某个调用者视图修改资源内容时，系统才会真正复制一份专用副本（private copy）给该调用者，而其他调用者所见到的最初的资源仍然保持不变。这过程对其他的调用者都是透明的（transparently）。此做法主要的优点是如果调用者没有修改资源，就不会有副本（private copy）被创建，因此多个调用者只是读取操作时可以共享同一份资源。
+
+### 实现原理
+
+> A thread-safe variant of {@link java.util.ArrayList} in which all mutative operations ({@code add}, {@code set}, and so on) are implemented by making a fresh copy of the underlying array.
+
+CopyOnWriteArrayList类注释上说明，这是一个ArrayList的线程安全变种，在做写操作时候会重新复制一份数组。其实现线程安全的方式是通过`ReentrantLock`为写操作加锁实现的。
+
+```Java
+/** The lock protecting all mutators */
+final transient ReentrantLock lock = new ReentrantLock();
+```
+
+CopyOnWriteArrayList的数据存放在`Object[] array`中，与ArrayList不同的是，CopyOnWriteArrayList是通过getter/setter来访问这个数组的。
+
+```java
+/** The array, accessed only via getArray/setArray. */
+private transient volatile Object[] array;
+
+final Object[] getArray() {
+    return array;
+}
+
+final void setArray(Object[] a) {
+    array = a;
+}
+```
+
+写操作，删除操作类似
+
+```java
+public boolean add(E e) {
+    final ReentrantLock lock = this.lock;
+    //加锁
+    lock.lock();
+    try {
+        Object[] elements = getArray();
+        int len = elements.length;
+        //写操作，复制新的数组
+        Object[] newElements = Arrays.copyOf(elements, len + 1);
+        newElements[len] = e;
+        setArray(newElements);
+        return true;
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+读操作，无需加锁
+
+```java
+private E get(Object[] a, int index) {
+    return (E) a[index];
+}
+
+public E get(int index) {
+    return get(getArray(), index);
+}
+```
+
+### 优点
+
+对于读多写少的数据，由于读操作是没有加锁的，这样能提高程序在并发情况下的访问性能。
+
+### 缺点
+
+这种实现方式只是保证数据的`最终一致性`，当在进行写操作复制数据还没替换的时候，其他线程读取到的仍是旧数据。
+
+如果存放的数据对象比较大，频繁的复制替换会消耗内存，从而引发GC。
