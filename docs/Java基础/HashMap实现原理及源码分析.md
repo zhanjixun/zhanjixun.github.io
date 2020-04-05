@@ -94,3 +94,6 @@ final float loadFactor;
 transient int modCount;
 ```
 
+
+
+参考：[HashMap实现原理及源码分析](https://www.cnblogs.com/chengxiao/p/6059914.html)
