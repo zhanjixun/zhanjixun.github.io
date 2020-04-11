@@ -1,6 +1,6 @@
 # Java线程池的使用
 
-`java.util.concurrent.Executor`是Java中线程池的最顶级接口，代表所有线程池对象。它主要有两个实现类`ThreadPoolExecutor`和`ScheduledThreadPoolExecutor`。以下是线程池的类图：
+`java.util.concurrent.Executor`是Java中线程池的最顶级接口，代表所有线程池对象。它主要有两个实现类`ThreadPoolExecutor`和`ScheduledThreadPoolExecutor`。线程池类关系图如下：
 
 ![](/doc/assets/img/Executor.png)
 
@@ -8,62 +8,13 @@
 
 JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor两个类。可以使用Executors工厂类来创建线程池。Executors提供了工具方法创建5种线程池：
 
-### 固定数量线程池
-
-创建一个固定大小的线程池，线程池维护固定数量的线程，线程存活时间不限。适用于`执行长期任务`，性能较好。
-
-该方法具体操作是设定corePoolSize和maximumPoolSize都为nThreads，keepAliveTime为0（不过时），WorkQueue使用LinkedBlockingQueue无界阻塞队列。
-
-固定数量线程池具有以下特点：
-
-1. 固定数量线程池会提交任务时候创建一个线程，直到线程数达到设定的大小。
-2. 线程数量达到设定大小后保持不变，如果其中线程因异常而结束，线程池会补充线程。
-
-```java
-Executors.newFixedThreadPool(int nThreads);
-```
-
-```java
-public static ExecutorService newFixedThreadPool(int nThreads) {
-    return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,
-                                  new LinkedBlockingQueue<Runnable>());
-}
-```
-
-### 单例线程池
-
-创建一个只有一个线程的线程池，其线程存活时间是不限的。使用于按照`顺序执行任务`的场景。
-
-该方法具体操作是设定corePoolSize和maximumPoolSize都为1，keepAliveTime为0（不过时），WorkQueue使用LinkedBlockingQueue无界阻塞队列。
-
-```java
-Executors.newSingleThreadExecutor();
-```
-
-```java
-public static ExecutorService newSingleThreadExecutor() {
-    return new FinalizableDelegatedExecutorService(new ThreadPoolExecutor(1, 1,0L, 
-					TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
-}
-```
-
-### 缓存线程池
-
-```java
-Executors.newCachedThreadPool();
-```
-
-### 定时线程池
-
-```java
-Executors.newScheduledThreadPool(3);
-```
-
-### 单例定时线程池
-
-```java
-Executors.newSingleThreadScheduledExecutor();
-```
+| 线程池         | 适用场景         | 核心线程数 | 最大线程数   | 存活时间 | 工作队列           |
+| -------------- | ---------------- | ------------ | ----------------- | ------------- | ------------------- |
+| 固定数量线程池 | 执行长期任务     | nThreads     | nThreads          | 0(不过时)     | LinkedBlockingQueue |
+| 单例线程池     | 按序执行任务     | 1            | 1                 | 0(不过时)     | LinkedBlockingQueue |
+| 缓存线程池     | 大量短期任务     | 0            | Integer.MAX_VALUE | 60s           | SynchronousQueue    |
+| 定时线程池     | 延迟或周期性任务 | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
+| 单例定时线程池 | 顺序周期性任务   | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
 
 ## 线程池的执行流程
 
@@ -98,7 +49,19 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
                           RejectedExecutionHandler handler) 
 ```
 
-ThreadPoolExecutor一共有4个构造函数，查看源码可知，前3个构造函数是调用第4个构造函数进行初始化工作的。第4个构造函数一共有7个参数
+ThreadPoolExecutor一共有4个构造函数，查看源码可知，前3个构造函数是调用第4个构造函数进行初始化工作的。第4个构造函数一共有7个参数。如下：
+
+| 参数            | 描述                   |
+| --------------- | ---------------------- |
+| corePoolSize    | 核心线程数量           |
+| maximumPoolSize | 最大线程数量           |
+| keepAliveTime   | 空闲线程存活时间       |
+| unit            | keepAliveTime的单位    |
+| workQueue       | 工作队列               |
+| threadFactory   | 线程工厂，用于创建线程 |
+| handler         | 拒绝策略，有4种取值    |
+
+
 
 ### corePoolSize
 
