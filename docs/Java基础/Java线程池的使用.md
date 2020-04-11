@@ -10,11 +10,11 @@ JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor
 
 | 线程池         | 适用场景         | 核心线程数 | 最大线程数   | 存活时间 | 工作队列           |
 | -------------- | ---------------- | ------------ | ----------------- | ------------- | ------------------- |
-| 固定数量线程池 | 执行长期任务     | nThreads     | nThreads          | 0(不过时)     | LinkedBlockingQueue |
-| 单例线程池     | 按序执行任务     | 1            | 1                 | 0(不过时)     | LinkedBlockingQueue |
+| 固定数量线程池 | 执行长期任务     | nThreads     | nThreads          | 0     | LinkedBlockingQueue |
+| 单例线程池     | 按序执行任务     | 1            | 1                 | 0     | LinkedBlockingQueue |
 | 缓存线程池     | 大量短期任务     | 0            | Integer.MAX_VALUE | 60s           | SynchronousQueue    |
-| 定时线程池     | 延迟或周期性任务 | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
-| 单例定时线程池 | 顺序周期性任务   | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
+| 定时线程池     | 延迟或周期性任务 | nThreads     | Integer.MAX_VALUE | 0     | DelayedWorkQueue    |
+| 单例定时线程池 | 顺序周期性任务   | nThreads     | Integer.MAX_VALUE | 0     | DelayedWorkQueue    |
 
 在《阿里巴巴Java开发手册》中明确指出不允许使用Executors的静态工厂构建线程池，为什么呢？
 
