@@ -6,7 +6,7 @@
 
 ## 创建线程池
 
-JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor两个类。可以使用Executors工厂类来创建线程池。Executors提供了工具方法创建5种线程池：
+JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor两个类。可以使用Executors工厂类来创建线程池。Executors提供了工具方法创建5种线程池：FixedThreadPool （固定数量线程池）、SingleThreadPool（单例线程池） 、CachedThreadPool （缓存线程池）、ScheduledThreadPool （定时线程池）和 SingleScheduledThreadPool（单例定时线程池） 。
 
 | 线程池         | 适用场景         | 核心线程数 | 最大线程数   | 存活时间 | 工作队列           |
 | -------------- | ---------------- | ------------ | ----------------- | ------------- | ------------------- |
@@ -20,7 +20,7 @@ JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor
 
 因为在Executors中创建的线程池存在以下弊端：
 
-1. `FixedThreadPool` 和 `SingleThreadPool` 的工作队列是无界阻塞队列（LinkedBlockingQueue），队列长度为`Integer.MAX_VALUE`，可能会堆积大量的请求，从而导致OOM问题。
+1. FixedThreadPool 和 SingleThreadPool 的工作队列是无界阻塞队列（LinkedBlockingQueue），队列长度为 Integer.MAX_VALUE ，可能会堆积大量的请求，从而导致OOM问题。
 2. CachedThreadPool 、 ScheduledThreadPool 和 SingleScheduledThreadPool 的最大线程数为 Integer.MAX_VALUE ，可能会创建大量线程，导致OOM问题。
 
 正确的创建线程方式应该是使用ThreadPoolExecutor的构造器去创建线程。
