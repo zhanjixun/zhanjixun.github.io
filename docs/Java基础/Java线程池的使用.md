@@ -1,8 +1,85 @@
 # Java线程池的使用
 
-在Java中
+`java.util.concurrent.Executor`是Java中线程池的最顶级接口，代表所有线程池对象。它主要有两个实现类`ThreadPoolExecutor`和`ScheduledThreadPoolExecutor`。以下是线程池的类图：
 
 ![](/doc/assets/img/Executor.png)
+
+## 创建线程池
+
+JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor两个类。可以使用Executors工厂类来创建线程池。Executors提供了工具方法创建5种线程池：
+
+### 固定数量线程池
+
+创建一个固定大小的线程池，线程池维护固定数量的线程，线程存活时间不限。适用于`执行长期任务`，性能较好。
+
+该方法具体操作是设定corePoolSize和maximumPoolSize都为nThreads，keepAliveTime为0（不过时），WorkQueue使用LinkedBlockingQueue无界阻塞队列。
+
+固定数量线程池具有以下特点：
+
+1. 固定数量线程池会提交任务时候创建一个线程，直到线程数达到设定的大小。
+2. 线程数量达到设定大小后保持不变，如果其中线程因异常而结束，线程池会补充线程。
+
+```java
+Executors.newFixedThreadPool(int nThreads);
+```
+
+```java
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue<Runnable>());
+}
+```
+
+### 单例线程池
+
+创建一个只有一个线程的线程池，其线程存活时间是不限的。使用于按照`顺序执行任务`的场景。
+
+该方法具体操作是设定corePoolSize和maximumPoolSize都为1，keepAliveTime为0（不过时），WorkQueue使用LinkedBlockingQueue无界阻塞队列。
+
+```java
+Executors.newSingleThreadExecutor();
+```
+
+```java
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService(new ThreadPoolExecutor(1, 1,0L, 
+					TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
+}
+```
+
+### 缓存线程池
+
+```java
+Executors.newCachedThreadPool();
+```
+
+### 定时线程池
+
+```java
+Executors.newScheduledThreadPool(3);
+```
+
+### 单例定时线程池
+
+```java
+Executors.newSingleThreadScheduledExecutor();
+```
+
+## 线程池的执行流程
+
+
+
+## 线程池的异常处理
+
+
+
+## 线程池的工作队列
+
+
+
+## 线程池的拒绝策略
+
+
 
 ## ThreadPoolExecutor的构造函数与参数
 
@@ -21,7 +98,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
                           RejectedExecutionHandler handler) 
 ```
 
-ThreadPoolExecutor一共有4个构造函数，查看源码可知，前3个构造函数是调用第4个构造函数进行初始化工作的。
+ThreadPoolExecutor一共有4个构造函数，查看源码可知，前3个构造函数是调用第4个构造函数进行初始化工作的。第4个构造函数一共有7个参数
 
 ### corePoolSize
 
@@ -65,8 +142,6 @@ ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
 
 
 
-
-
 参考
 
 [java四种线程池的使用](https://www.cnblogs.com/zincredible/p/10984459.html)
@@ -74,4 +149,8 @@ ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
 [Java并发编程：线程池的使用](https://www.cnblogs.com/dolphin0520/p/3932921.html)
 
 [java线程池 面试题（精简）](https://blog.csdn.net/qq_29373285/article/details/85238728)
+
+[面试必备：Java线程池解析](https://www.cnblogs.com/jay-huaxiao/p/11454416.html)
+
+[Java线程池面试题](https://blog.csdn.net/zhaohong_bo/article/details/89303522)
 
