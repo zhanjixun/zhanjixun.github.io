@@ -16,6 +16,15 @@ JDK中Executor的实现主要有ThreadPoolExecutor和ScheduledThreadPoolExecutor
 | 定时线程池     | 延迟或周期性任务 | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
 | 单例定时线程池 | 顺序周期性任务   | nThreads     | Integer.MAX_VALUE | 0(不过时)     | DelayedWorkQueue    |
 
+在《阿里巴巴Java开发手册》中明确指出不允许使用Executors的静态工厂构建线程池，为什么呢？
+
+因为在Executors中创建的线程池存在以下弊端：
+
+1. `FixedThreadPool` 和 `SingleThreadPool` 的工作队列是无界阻塞队列（LinkedBlockingQueue），队列长度为`Integer.MAX_VALUE`，可能会堆积大量的请求，从而导致OOM问题。
+2. CachedThreadPool 、 ScheduledThreadPool 和 SingleScheduledThreadPool 的最大线程数为 Integer.MAX_VALUE ，可能会创建大量线程，导致OOM问题。
+
+正确的创建线程方式应该是使用ThreadPoolExecutor的构造器去创建线程。
+
 ## 线程池的执行流程
 
 
