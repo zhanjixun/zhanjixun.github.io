@@ -1,4 +1,4 @@
-# Mybatis的二级缓存
+# Mybatis的缓存
 
 Mybatis首先去缓存中查询结果集，如果没有则查询数据库，如果有则从缓存取出返回结果集就不走数据库。Mybatis内部存储缓存使用一个HashMap，key为hashCode+sqlId+Sql语句。value为从查询出来映射生成的java对象
 
