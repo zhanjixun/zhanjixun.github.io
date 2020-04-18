@@ -4,6 +4,36 @@
 
 ## List列表
 
+```mermaid
+graph BT
+
+Iterable(Iterable)
+Collection(Collection)
+List(List)
+AbstractCollection[AbstractCollection]
+AbstractList[AbstractList]
+Vector[Vector]
+Stack[Stack]
+ArrayList[ArrayList]
+CopyOnWriteArrayList[CopyOnWriteArrayList]
+LinkedList[LinkedList]
+
+Collection --> Iterable
+AbstractCollection -.-> Collection
+List --> Collection
+AbstractList --> AbstractCollection
+Vector --> AbstractList
+Vector -.-> List
+Stack --> Vector
+ArrayList --> AbstractList
+ArrayList -.-> List
+CopyOnWriteArrayList -.-> List
+LinkedList --> AbstractList
+LinkedList -.-> List
+LinkedList -.-> Collection
+
+```
+
 ![](/doc/assets/img/List.png)
 
 | List实现             | 线程安全       | 优缺点     |
