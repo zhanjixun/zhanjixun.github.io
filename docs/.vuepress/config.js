@@ -10,6 +10,7 @@ module.exports = {
             {text: '主页', link: '/'},
             {text: '技术体系', link: '/总纲'},
             {text: '面试题', link: '/面试题'},
+            {text: '解决方案', link: '/常见场景技术实践'},
             {text: '项目经历', link: '/项目经历'}
         ],
         sidebar: 'auto'
