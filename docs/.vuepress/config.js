@@ -1,7 +1,7 @@
 module.exports = {
-    base: '/doc/',
+    base: '/',
     title: 'Java系统化知识体系',
-    description: 'Vuepress blog demo',
+    description: 'zhanjixun blog',
     themeConfig: {
         repo: 'https://www.vuepress.cn/',
         repoLabel: 'VuePress',
