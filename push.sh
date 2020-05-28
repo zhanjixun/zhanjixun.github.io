@@ -13,7 +13,7 @@ git commit -m '脚本提交'
 
 git push
 
-#########################
+######################### 分开部署到 zhanjixun.gitee.io
 
 npm run docs:build
 
@@ -24,4 +24,5 @@ git commit -m 'build'
 git remote add origin https://gitee.com/zhanjixun/zhanjixun.git
 git push -f origin master
 
+rm -rf node_modules
 rm -rf docs/.vuepress/dist
