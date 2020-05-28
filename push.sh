@@ -24,5 +24,6 @@ git commit -m build
 git remote add origin https://gitee.com/zhanjixun/zhanjixun.git
 git push -f origin master
 
+cd ../../..
 rm -rf node_modules
 rm -rf docs/.vuepress/dist
