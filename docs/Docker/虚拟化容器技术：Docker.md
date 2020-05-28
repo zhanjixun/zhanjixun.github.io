@@ -2,7 +2,9 @@
 
 ## 简介
 
-## 安装Docker
+
+
+## 安装
 
 在ubuntu下安装docker非常简单，只需要一条命令即可
 
@@ -53,7 +55,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-## Docker的基本使用
+## 基本概念
 
 在docker中，有三个核心的概念：镜像（Image）、容器（Container）和仓库（Repository）。这三个部分组成了docker的整个生命周期。如下图显示，容器由镜像实例化而来（docker run），镜像可以提交到仓库保存（docker push），仓库提供镜像给docker拉取（docker pull），运行的容器可以提交为镜像。
 
@@ -202,7 +204,10 @@ Docker仓库（Repository）是集中存放镜像文件的地方，仓库中可�
 #### 创建本地私服
 
 ```shell
-docker run -d -v /data/docker-registry:/var/lib/registry -p 5000:5000 --restart=always --name registry registry:2
+docker run -d \
+-v /data/docker-registry:/var/lib/registry \
+-p 5000:5000 --restart always \
+--name registry registry:2
 ```
 
 > -d表示后台运行
@@ -236,6 +241,8 @@ docker push docker-registry:5000/zhanjixun/my-busybox:1.0
 
 > 语法格式：docker push  私服名称:私服端口/用户名/推入镜像名称:镜像版本标签
 > 如果是推送到docker hub官方仓库docker.io，则可以省略 私服名称:私服端口
+
+
 
 ## 进一步使用
 
@@ -286,6 +293,8 @@ portainer/portainer:latest
 
 在左边菜单栏，看到Stacks、Containers、Images、Networks和Volumes，每个功能可以自己点一下，玩几下就熟悉了。
 
+
+
 ### 常用镜像的使用方式
 
 #### MySQL
@@ -293,7 +302,7 @@ portainer/portainer:latest
 详情参照docker hub  <https://hub.docker.com/_/mysql>
 
 ```shell
-docker run -d --name mysql mysql:5.7
+docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
 ```
 
 > -e MYSQL_ROOT_PASSWORD=123456          #设置mysql的root用户的密码
@@ -307,6 +316,88 @@ docker run -d --name mysql mysql:5.7
 #### Tomcat
 
 详情参照docker hub <https://hub.docker.com/_/tomcat>
+
+#### Redis
+
+```shell
+docker run -d --name redis -p 6379:6379 redis:3.2
+```
+
+#### Portainer
+
+```shell
+#单机安装
+docker run -d --name portainer \
+-p 9000:9000 --restart always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /data/volumns/portainer:/data \
+portainer/portainer:latest
+
+#集群安装
+docker service create \
+--replicas 1 \
+--name portainer --publish 9000:9000 \
+--constraint 'node.role == manager' \
+--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+--mount type=bind,src=/data/volumns/portainer,dst=/data \
+portainer/portainer:latest
+```
+
+> -v /var/run/docker.sock 是为了在容器内连接docker 获取docker的信息
+
+#### Registry
+
+```shell
+docker run -d --name registry \
+-v /data/volumns/docker-registry:/var/lib/registry \
+-p 5000:5000 --restart always \
+registry:2
+```
+
+> registry安装目录结构
+>
+> /var/lib/registry                                           #存放镜像目录
+>
+> /etc/docker/registry/config.yml                 #配置文件
+
+在使用私服的docker daemon中配置`/etc/docker/daemon.json`，访问[http://192.168.1.201:5000/v2/_catalog](http://192.168.1.201:5000/v2/_catalog)
+```shell
+{
+     "insecure-registries":["192.168.1.201:5000"] #修改私服所在ip地址
+} 
+```
+
+#### Gitlab
+
+```shell
+docker run -d --name gitlab -p 9000:9000 \
+--restart always \
+-v /data/volumns/gitlab/etc:/etc/gitlab \
+-v /data/volumns/gitlab/log:/var/log/gitlab \
+-v /data/volumns/gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce:12.0.0-ce.0
+
+vim /data/volumns/gitlab/etc/gitlab.rb
+将# external_url 'GENERATED_EXTERNAL_URL' 修改为 external_url 'http://192.168.1.201:9000'
+修改为自己的ip
+
+docker exec gitlab gitlab-ctl reconfigure
+```
+
+> gitlab安装目录结构
+>
+> /opt/gitlab/             ## 主目录
+> /etc/gitlab/              ## 放置配置文件
+> /var/opt/gitlab/       ## 各个组件
+> /var/log/gitlab/       ## 放置日志文件
+>
+> 常用命令
+>
+> gitlab-ctl status          #检查gitlab组件状态
+>
+> gitlab-ctl restart         #重启gitlab
+>
+> gitlab-ctl reconfigure #重载gitlab配置
 
 
 
