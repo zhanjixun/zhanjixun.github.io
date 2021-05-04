@@ -1,4 +1,4 @@
-
+# Bean的生命周期
 
 ```mermaid
 graph TD
