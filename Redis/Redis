@@ -17,8 +17,14 @@
 [Redis的6种数据类型](http://c.biancheng.net/view/4510.html)
 
 [高并发架构系列：Redis的基本介绍，五种数据类型及应用场景分析](https://cloud.tencent.com/developer/article/1455047)
+
 [redis 五种数据类型和应用场景](https://blog.csdn.net/qq_41654985/article/details/82390875)
+
 [redis常见应用场景](https://www.jianshu.com/p/40dbc78711c8)
+
 [Redis 命令参考](http://doc.redisfans.com/)
+
 [几率大的Redis面试题（含答案）](https://blog.csdn.net/Butterfly_resting/article/details/89668661)
+
 [Redis（二）：内存淘汰策略、持久化方式、事务、主从复制](https://blog.csdn.net/a745233700/article/details/85413179)
+
