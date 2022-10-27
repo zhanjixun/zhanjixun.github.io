@@ -238,12 +238,6 @@ public void clear() {
 - `元素查改快`，因为可以使用下标访问。
 - 元素可重复，可以为NULL。
 
-
-
-------
-
-
-
 # ArrayList线程安全的问题
 
 ## 为什么说ArrayList不是线程安全？
