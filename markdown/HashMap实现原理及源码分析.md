@@ -67,7 +67,7 @@ static class Entry<K,V> implements Map.Entry<K,V> {
 
  所以，HashMap的整体结构如下
 
-![img](../assets/img/1024555-20161113235348670-746615111.png)
+![](../assets/img/1024555-20161113235348670-746615111.png)
 
 简单来说，HashMap由`数组+链表`组成的，数组是HashMap的主体，链表则是主要为了`解决哈希冲突`而存在的。
 
