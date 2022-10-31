@@ -24,7 +24,7 @@ String str4 = str1 + str2 + str3;
 
 上面的代码对应的字节码如下：
 
-![](../assets/img/640.png)
+![](../assets/img/58c48958e11a7d9a.png)
 
 可以看出，字符串对象通过“+”的字符串拼接方式，实际上是通过 `StringBuilder` 调用 `append()` 方法实现的，拼接完成之后调用 `toString()` 得到一个 `String` 对象 。
 

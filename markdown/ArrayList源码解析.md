@@ -11,7 +11,7 @@ ArrayList 实现了 List 接口，是顺序容器，即元素存放的数据与�
 
 ArrayList 实现了`RandomAccess`，说明 ArrayList 支持随机下标访问。
 
-![](../assets/img/ArrayList.png)
+![](../assets/img/ad13bfc3bb62a878.png)
 
 ## 成员对象
 
@@ -33,7 +33,7 @@ private int size;
 protected transient int modCount = 0;
 ```
 
-![](../assets/img/1712475c04e43954.png)
+![](../assets/img/938fe9047def6194.png)
 
 ## 构造器
 

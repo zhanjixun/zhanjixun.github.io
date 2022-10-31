@@ -34,7 +34,7 @@ LinkedList -.-> Collection
 
 ```
 
-![](../assets/img/List.png)
+![](../assets/img/3a3b3ce813799a33.png)
 
 | List实现             | 线程安全       | 优缺点     |
 | -------------------- | -------------- | ---------- |
@@ -46,7 +46,7 @@ LinkedList -.-> Collection
 
 ## Set集合
 
-![](../assets/img/Set.png)
+![](../assets/img/d68c68e5832003b7.png)
 
 | Set实现               |      |      |
 | --------------------- | ---- | ---- |
@@ -61,13 +61,13 @@ LinkedList -.-> Collection
 
 ## Queue队列
 
-![](../assets/img/Queue.png)
+![](../assets/img/c3dee9b0e5b83a9b.png)
 
 
 
 ## Map映射
 
-![](../assets/img/Map.png)
+![](../assets/img/010452af6a62e3ff.png)
 
 
 

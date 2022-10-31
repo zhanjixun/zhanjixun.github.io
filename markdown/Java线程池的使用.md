@@ -2,7 +2,7 @@
 
 `java.util.concurrent.Executor`是Java中线程池的最顶级接口，代表所有线程池对象。它主要有两个实现类`ThreadPoolExecutor`和`ScheduledThreadPoolExecutor`。线程池类关系图如下：
 
-![](../assets/img/Executor.png)
+![](../assets/img/e8ad38c316d9baa2.png)
 
 ## 创建线程池
 
