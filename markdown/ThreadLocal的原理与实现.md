@@ -53,7 +53,7 @@ ThreadLocalMap getMap(Thread t) {
 
 这里涉及三个类ThreadLocal、Thread和ThreadLocalMap，其中ThreadLocalMap是定义在ThreadLocal里的静态内部类，在Thread中有个成员对象是ThreadLocalMap类型的，用于存放当前线程的变量。三者关系如下图：
 
-![](..\assets\img\af32b6de54ef48bc9ddd6596d8552714.png)
+![](../assets/img/2d3f8ba309a84f15.png)
 
 ### set方法
 
