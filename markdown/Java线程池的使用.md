@@ -1,2 +1,67 @@
 # Java线程池的使用
 
+### 线程池的参数
+
+ThreadPoolExecutor是线程池最核心的一个类，我们来看它参数最完整的构造类，代码如下：
+
+```java
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue<Runnable> workQueue,
+                          ThreadFactory threadFactory,
+                          RejectedExecutionHandler handler)
+```
+
+**核心线程数**
+
+>    当线程池初始化的时候数量为0，当第一个任务到达时候创建corePoolSize个线程；核心线程永久存活，即使空闲也不会销毁。
+
+**最大线程数**
+
+>    当核心线程数已满，且工作队列也已存满，此时就会去判断当前线程数是否maximumPoolSize，如是则创建线程处理任务，如否则执行拒绝测量。
+
+**空闲超时时间**
+
+>    如果当前线程数大于corePoolSize，且空闲线程超过keepAliveTime时间，则销毁线程。
+
+**空闲超时时间单位**
+
+> 单位
+
+**工作队列**
+
+> 当核心线程已满，新提交的任务将放到工作队列中等待执行（前提是队列没满）。
+
+**创建线程的工厂**
+
+> 创建线程用的
+
+**拒绝策略**
+
+> 线程数达到最大线程数，且工作队列已满，当提交新任务时候，则执行拒绝测量
+
+### 工作队列
+
+| 队列                | 界限                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| SynchronousQueue    | 没有容量，提交任务后马上执行，如果线程已达最大，则执行拒绝策略 |
+| LinkedBlockingQueue | 无参构造器是无界的，可以用有参构造器执行队列大小             |
+| ArrayBlockingQueue  | 有界队列，创建对象时需指定队列大小                           |
+| DealyQueue          | 无界，特点是元素有过期时间，到过期时间后，最早过期的先出队   |
+
+### 拒绝策略
+
+触发拒绝策略的两个条件：
+
+1. 线程池中线程数`已达最大线程数`
+2. 工作队列已`存满容量`，无界队列则永远不会触发（可能触发OOM）
+
+| 拒绝策略            | 描述                                              |
+| ------------------- | ------------------------------------------------- |
+| DiscardPolicy       | 直接丢弃任务，不抛出异常                          |
+| AbortPolicy         | 直接丢弃任务，抛出异常 RejectedExecutionException |
+| DiscardOldestPolicy | 抛弃队列最早的元素，添加当前任务到队列            |
+| CallerRunsPolicy    | 直接在主线程执行任务，不再使用线程池处理此任务    |
+
