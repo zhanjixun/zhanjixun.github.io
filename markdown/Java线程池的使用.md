@@ -2,18 +2,22 @@
 
 ![](..\assets\img\3e794e96cf276e12.png)
 
+### 为什么要使用线程池
+
+避免频繁地创建和销毁线程，达到线程对象的重用。
+
 ### 线程池的参数
 
 ThreadPoolExecutor是线程池最核心的一个类，我们来看它参数最完整的构造类，代码如下：
 
 ```java
-public ThreadPoolExecutor(int corePoolSize,
-                          int maximumPoolSize,
-                          long keepAliveTime,
-                          TimeUnit unit,
-                          BlockingQueue<Runnable> workQueue,
-                          ThreadFactory threadFactory,
-                          RejectedExecutionHandler handler)
+public ThreadPoolExecutor(int corePoolSize,//核心线程数
+                          int maximumPoolSize,//最大线程数
+                          long keepAliveTime,//空闲超时时间
+                          TimeUnit unit,//超时时间单位
+                          BlockingQueue<Runnable> workQueue,//工作队列
+                          ThreadFactory threadFactory,//创建线程的工厂
+                          RejectedExecutionHandler handler)//拒绝策略
 ```
 
 **核心线程数**
@@ -75,3 +79,21 @@ public ThreadPoolExecutor(int corePoolSize,
 2）提高了相应速率：当任务到达时，任务可以不需要等到线程创建就能够执行。
 3）防止服务器过载：形成内存溢出，或者cpu耗尽。
 4）提高线程的可管理性：线程时稀缺资源，若无限的创建线程，不仅会消耗资源，还会降低系统的稳定性，使用线程池可以统一的分配，调优和监控。
+
+### 为什么阿里发布的Java开发手册中强制线程池不允许使用Executors 去创建？
+
+Executors提供了4种创建线程池的方式：
+
+1. newFixedThreadPool (固定数目线程的线程池)
+2. newCachedThreadPool(可缓存线程的线程池)
+3. newSingleThreadExecutor (单线程的线程池)
+4. newScheduledThreadPool (定时及周期执行的线程池)
+
+FixedThreadPool和SingleThreadPool : 
+
+> 允许的`工作队列`长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM
+
+ CachedThreadPool和ScheduledThreadPool : 
+
+> 允许的`最大线程数`为Integer.MAX_VALUE，可能会创建大量的线程，从而导致OOM
+
