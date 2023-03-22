@@ -75,6 +75,8 @@ static class ThreadLocalMap {
 
 ### hash冲突
 
+开放寻址法
+
 ### 探测式清理
 
 ### 启发式清理
