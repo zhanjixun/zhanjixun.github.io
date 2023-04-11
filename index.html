@@ -18,6 +18,19 @@
             cursor: pointer;
         }
     </style>
+    <style type="text/css">
+        ul {
+            padding: 0 0 0 20px;
+            margin: 0;
+            list-style: none;
+            counter-reset: a;
+        }
+
+        li > a:before, li:before {
+            counter-increment: a;
+            content: counters(a, ".") ". ";
+        }
+    </style>
     <!-- CDN files for docsify-katex -->
     <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
     <!-- or <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script> -->
