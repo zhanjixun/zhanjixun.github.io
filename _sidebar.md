@@ -1,4 +1,4 @@
-- [**首页**](/README.md)
+- [首页](/README.md)
 - 数据结构
   - 数组
   - 链表
@@ -66,19 +66,25 @@
 - MySQL
 - Mybatis
 - Spring
+  - IOC
+    - [Bean的生命周期](markdown/Bean的生命周期.md)
+  - AOP
+  - [事务](markdown/Spring中的事务管理.md)
 - Spring MVC
 - Dubbo
 - Spring Boot
+  - [自动配置原理](markdown/SpringBoot自动装配原理.md)
+  - [配置项加载顺序](markdown/SpringBoot配置加载顺序.md)
 - Spring Cloud
 - Tomcat
 - Redis
   - [5种数据类型及使用场景](markdown/Redis的五种数据类型及使用场景)
   - [部署方式](markdown/Redis的部署方式.md)
-  - 持久化方式
-  - 过期策略和内存淘汰机制
+  - [持久化方式](markdown/Redis的持久化机制.md)
+  - [过期策略和内存淘汰机制](markdown/Redis过期策略和内存淘汰机制.md)
   - 事务
-  - 缓存穿透和缓存雪崩
-  - 双写一致性
+  - [缓存穿透和缓存雪崩](markdown/Redis缓存穿透和缓存雪崩.md)
+  - [双写一致性](markdown/Redis双写一致性问题.md)
   - 原子性实现原理
   - 单线程为什么还这么快
   - Redis 6.0 多线程
@@ -91,10 +97,17 @@
 - Zookeeper
 - Netty
 - Docker
+  - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker.md)
 - Kubernetes
 - Nginx
 - Linux
 - 设计模式
+  - [23种设计模式](markdown/23种设计模式.md)
+  - [单例模式](markdown/单例模式的几种实现方式.md)
 - 专业术语
 - 编程思想
 - 常见场景实现
+  - [分布式锁](markdown/分布式锁.md)
+  - [延迟队列](markdown/延迟队列.md)
+  - [秒杀系统](markdown/秒杀系统的实现.md)
+  - [如何设计高并发系统](markdown/如何设计一个高并发系统.md)
