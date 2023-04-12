@@ -41,6 +41,7 @@
 <script>
     window.$docsify = {
         name: 'Java知识体系',
+        nameLink: '/README.md',
         // repo: 'https://gitee.com/zhanjixun/jbok',
         loadSidebar: true,
         maxLevel: 6,
@@ -88,19 +89,7 @@
             fontsize: '0.9em',
             color: 'rgb(90,90,90)',
             language: 'chinese'
-        },
-        plugins: [
-            // https://docsify.js.org/#/write-a-plugin
-            function myPlugin1(hook, vm) {
-                hook.ready(function () {
-                    const message = document.querySelectorAll('.sidebar-nav > ul > li');
-                    console.log(message)
-                    for (let i in message) {
-                        console.log(message[i].innerText)
-                    }
-                });
-            }
-        ],
+        }
     }
 </script>
 <!-- docsify -->
