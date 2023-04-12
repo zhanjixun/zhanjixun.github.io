@@ -19,6 +19,7 @@
         }
     </style>
     <style type="text/css">
+        <!--sidebar添加目录序号-->
        ul {
             padding: 0 0 0 20px;
             margin: 0;
@@ -29,6 +30,31 @@
         li > a:before, li:not(:has(> a)):before {
             counter-increment: a;
             content: counters(a, ".") ". ";
+        }
+    </style>
+    <style type="text/css">
+        <!--markdown文章添加目录序号-->
+        .markdown-section h2:before {
+            content: counter(h2counter, cjk-ideographic)'\3001';
+        }
+        .markdown-section h2 {
+            counter-reset: h3counter;
+            counter-increment: h2counter;
+        }
+
+        .markdown-section h3:before {
+            content: counter(h2counter)"."counter(h3counter)" ";
+        }
+        .markdown-section h3 {
+            counter-reset: h4counter;
+            counter-increment: h3counter;
+        }
+
+        .markdown-section h4:before {
+            content: counter(h2counter)"."counter(h3counter)"."counter(h4counter)" ";
+        }
+        .markdown-section h4 {
+            counter-increment: h4counter;
         }
     </style>
     <!-- CDN files for docsify-katex -->
