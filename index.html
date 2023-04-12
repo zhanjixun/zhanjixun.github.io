@@ -20,14 +20,11 @@
     </style>
     <style type="text/css">
         /*sidebar添加目录序号*/
-       ul {
-            padding: 0 0 0 20px;
-            margin: 0;
-            list-style: none;
+        .sidebar-nav ul {
             counter-reset: a;
         }
 
-        li > a:before, li:not(:has(> a)):before {
+        .sidebar-nav li > a:before, .sidebar-nav li:not(:has(> a)):before {
             counter-increment: a;
             content: counters(a, ".") ". ";
         }
