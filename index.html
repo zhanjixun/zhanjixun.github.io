@@ -26,32 +26,38 @@
 
         .sidebar-nav li > a:before, .sidebar-nav li:not(:has(> a)):before {
             counter-increment: a;
-            content: counters(a, ".") ". ";
+            content: counters(a, ".")". ";
         }
     </style>
     <style type="text/css">
         /*markdown文章添加目录序号*/
-        .markdown-section h2:before {
-            content: counter(h2counter, cjk-ideographic)'\3001';
-        }
         .markdown-section h2 {
+            /*遇到h2标签就重置h3的计数器*/
             counter-reset: h3counter;
+            /*累加h2的计数器*/
             counter-increment: h2counter;
         }
 
-        .markdown-section h3:before {
-            content: counter(h2counter)"."counter(h3counter)" ";
+        .markdown-section h2 > a > span:before {
+            /*在before位置添加content*/
+            content: counter(h2counter, cjk-ideographic)'\3001';
         }
+
         .markdown-section h3 {
             counter-reset: h4counter;
             counter-increment: h3counter;
         }
 
-        .markdown-section h4:before {
-            content: counter(h2counter)"."counter(h3counter)"."counter(h4counter)" ";
+        .markdown-section h3 > a > span:before {
+            content: counter(h2counter)"."counter(h3counter)" ";
         }
+
         .markdown-section h4 {
             counter-increment: h4counter;
+        }
+
+        .markdown-section h4 > a > span:before {
+            content: counter(h2counter)"."counter(h3counter)"."counter(h4counter)" ";
         }
     </style>
     <!-- CDN files for docsify-katex -->
