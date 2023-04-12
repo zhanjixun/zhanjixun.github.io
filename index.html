@@ -19,14 +19,14 @@
         }
     </style>
     <style type="text/css">
-        ul {
+       ul {
             padding: 0 0 0 20px;
             margin: 0;
             list-style: none;
             counter-reset: a;
         }
 
-        li > a:before, li:before {
+        li > a:before, li:not(:has(> a)):before {
             counter-increment: a;
             content: counters(a, ".") ". ";
         }
