@@ -24,9 +24,14 @@
             counter-reset: a;
         }
 
-        .sidebar-nav li > a:before, .sidebar-nav li:not(:has(> a)):before {
+        .sidebar-nav > ul > li > a:before, .sidebar-nav > ul > li:not(:has(> a)):before {
             counter-increment: a;
-            content: counters(a, ".")". ";
+            content: counter(a, cjk-ideographic) '\3001';
+        }
+
+        .sidebar-nav > ul > li li > a:before, .sidebar-nav > ul > li li:not(:has(> a)):before {
+            counter-increment: a;
+            content: counters(a, ".") " ";
         }
     </style>
     <style type="text/css">
