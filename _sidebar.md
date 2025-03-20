@@ -9,41 +9,41 @@
   - 堆
 - 算法
   - 排序算法
-    - [常见的8种排序算法](markdown/常见的8种排序算法.md)
+    - [常见的8种排序算法](markdown/常见的8种排序算法)
   - 查找算法
-    - [线性查找算法](markdown/线性查找算法.md)
-    - [二分查找算法](markdown/二分查找算法.md)
-    - [插值查找算法](markdown/插值查找算法.md)
-    - [斐波那契查找算法](markdown/斐波那契查找算法.md)
+    - [线性查找算法](markdown/线性查找算法)
+    - [二分查找算法](markdown/二分查找算法)
+    - [插值查找算法](markdown/插值查找算法)
+    - [斐波那契查找算法](markdown/斐波那契查找算法)
 - 计算机网络
   - 七层网络模型
   - TCP/IP
   - TCP三次握手和四次挥手
-  - [http和https](markdown/http协议.md)
+  - [http和https](markdown/http协议)
   - Socket
 - Java基础
-  - [基本数据类型](markdown/基本数据类型.md)
-  - [运算符](markdown/Java运算符.md)
-  - [String](markdown/String.md)
-  - [Java创建对象的5种方式](markdown/Java创建对象的5种方式.md)
+  - [基本数据类型](markdown/基本数据类型)
+  - [运算符](markdown/Java运算符)
+  - [String](markdown/String)
+  - [Java创建对象的5种方式](markdown/Java创建对象的5种方式)
   - [集合类](markdown/Java集合类)
     - List
-      - [ArrayList](markdown/ArrayList源码解析.md)
-      - [LinkedList](markdown/LinkedList源码解析.md)
+      - [ArrayList](markdown/ArrayList源码解析)
+      - [LinkedList](markdown/LinkedList源码解析)
     - Set
     - Queue
     - Map
-      - [HashMap](markdown/HashMap实现原理及源码分析.md)
+      - [HashMap](markdown/HashMap实现原理及源码分析)
       - HashTable
       - TreeMap
-      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析.md)
+      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
     - Collections
   - Java多线程
-    - [线程池](markdown/Java线程池的使用.md)
-    - [volatile](markdown/volatile关键字解析.md)
+    - [线程池](markdown/Java线程池的使用)
+    - [volatile](markdown/volatile关键字解析)
     - Lock体系
     - 并发容器
-      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析.md)
+      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
       - CopyOnWriteArrayList
       - [ThreadLocal](markdown/ThreadLocal的原理与实现)
       - BlockingQueue
@@ -56,7 +56,7 @@
     - NIO
     - AIO
   - 异常处理
-    - [try-catch-finally-return执行顺序](markdown/try-catch-finally-return执行顺序.md)
+    - [try-catch-finally-return执行顺序](markdown/try-catch-finally-return执行顺序)
   - Java中的代理模式
   - Java SPI
   - 序列化
@@ -66,24 +66,24 @@
 - Mybatis
 - Spring
   - IOC
-    - [Bean的生命周期](markdown/Bean的生命周期.md)
+    - [Bean的生命周期](markdown/Bean的生命周期)
   - AOP
-  - [事务](markdown/Spring中的事务管理.md)
+  - [事务](markdown/Spring中的事务管理)
 - Spring MVC
 - Dubbo
 - Spring Boot
-  - [自动配置原理](markdown/SpringBoot自动装配原理.md)
-  - [配置项加载顺序](markdown/SpringBoot配置加载顺序.md)
+  - [自动配置原理](markdown/SpringBoot自动装配原理)
+  - [配置项加载顺序](markdown/SpringBoot配置加载顺序)
 - Spring Cloud
 - Tomcat
 - Redis
   - [5种数据类型及使用场景](markdown/Redis的五种数据类型及使用场景)
-  - [部署方式](markdown/Redis的部署方式.md)
-  - [持久化方式](markdown/Redis的持久化机制.md)
-  - [过期策略和内存淘汰机制](markdown/Redis过期策略和内存淘汰机制.md)
+  - [部署方式](markdown/Redis的部署方式)
+  - [持久化方式](markdown/Redis的持久化机制)
+  - [过期策略和内存淘汰机制](markdown/Redis过期策略和内存淘汰机制)
   - 事务
-  - [缓存穿透和缓存雪崩](markdown/Redis缓存穿透和缓存雪崩.md)
-  - [双写一致性](markdown/Redis双写一致性问题.md)
+  - [缓存穿透和缓存雪崩](markdown/Redis缓存穿透和缓存雪崩)
+  - [双写一致性](markdown/Redis双写一致性问题)
   - 原子性实现原理
   - 单线程为什么还这么快
   - Redis 6.0 多线程
@@ -96,19 +96,20 @@
 - Zookeeper
 - Netty
 - Docker
-  - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker.md)
+  - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker)
 - Kubernetes
 - Nginx
 - Linux
 - 设计模式
-  - [23种设计模式](markdown/23种设计模式.md)
-  - [单例模式](markdown/单例模式的几种实现方式.md)
+  - [23种设计模式](markdown/23种设计模式)
+  - [单例模式](markdown/单例模式的几种实现方式)
 - 专业术语
-  - [微服务之服务治理](markdown/微服务之服务治理.md)
+  - [微服务之服务治理](markdown/微服务之服务治理)
 - 编程思想
+  - [DDD(领域驱动设计)](markdown/DDD(领域驱动设计))
 - 常见场景实现
-  - [分布式锁](markdown/分布式锁.md)
-  - [延迟队列](markdown/延迟队列.md)
-  - [秒杀系统](markdown/秒杀系统的实现.md)
-  - [如何设计高并发系统](markdown/如何设计一个高并发系统.md)
+  - [分布式锁](markdown/分布式锁)
+  - [延迟队列](markdown/延迟队列)
+  - [秒杀系统](markdown/秒杀系统的实现)
+  - [如何设计高并发系统](markdown/如何设计一个高并发系统)
 - [面试题](markdown/面试题)

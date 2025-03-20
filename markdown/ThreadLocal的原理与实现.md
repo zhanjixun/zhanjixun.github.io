@@ -2,7 +2,7 @@
 
 ## 简介
 
-ThreadLocal叫做**线程变量**，ThreadLocal是用来存放数据的，而且存放的数据在每个线程单独维护一份。多个线程操作这个变量的时候，实际是在操作自己本地内存里面的变量，从而起到**线程隔离**的作用，避免了并发场景下的线程安全问题。
+ThreadLocal通过为每个线程维护一个独立的变量副本来实现**线程隔离**。
 
 > **为什么要用ThreadLocal**
 >
@@ -10,7 +10,9 @@ ThreadLocal叫做**线程变量**，ThreadLocal是用来存放数据的，而且
 >
 > 为了解决线性安全问题，可以用加锁的方式，比如使用`synchronized` 或者`Lock`。但是加锁的方式，可能会导致系统变慢。
 >
-> 还有另外一种方案，就是使用空间换时间的方式，即使用`ThreadLocal`。使用`ThreadLocal`类访问共享变量时，会在每个线程的本地，都保存一份共享变量的拷贝副本。多线程对共享变量修改时，实际上操作的是这个变量副本，从而保证线性安全。
+> 另外一种方案，就是使用空间换时间的方式，即使用`ThreadLocal`。使用`ThreadLocal`类访问共享变量时，会在每个线程的本地，都保存一份共享变量的拷贝副本。多线程对共享变量修改时，实际上操作的是这个变量副本，从而保证线性安全。
+
+![](../assets/img/drawio/ThreadLocal的原理与实现.svg)
 
 ## 基本使用
 
@@ -19,7 +21,7 @@ ThreadLocal对象提供3个公有方法 ：set()、get()和remove()。基本的�
 ```java
 ThreadLocal<Object> threadLocal1 = new ThreadLocal<>();
 ThreadLocal<Object> threadLocal2 = new ThreadLocal<>();
-for (int i = 0; i < 3; i++) {
+for (int i = 0; i < 2; i++) {
     new Thread(() -> {
         threadLocal1.set(Thread.currentThread().getId() + "-1");
         threadLocal2.set(Thread.currentThread().getId() + "-2");
