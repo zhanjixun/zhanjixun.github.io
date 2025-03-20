@@ -9,5 +9,6 @@
 - 一目了然的图表
 
 
+[Github](/README.md)
 [开始阅读](/README.md)
 
