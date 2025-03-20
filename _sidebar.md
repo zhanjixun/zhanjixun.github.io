@@ -127,20 +127,19 @@
     - 单线程，避免频繁上下文切换
     - 采用非阻塞I/O多路复用机制
   - Redis 6.0 多线程
-- MQ
-  - [各种MQ的区别](markdown/各种MQ的区别)
-  - RocketMQ
-  - RabbitMQ
-  - kafka
-  - ActiveMQ
+- RocketMQ
+  - [RocketMQ实现顺序消息](markdown/RocketMQ实现顺序消息)
+  - [RocketMQ怎么防止消息丢失](markdown/RocketMQ怎么防止消息丢失)
+- Kafka
 - Elasticsearch
+- Apollo
 - Zookeeper
 - Netty
 - Docker
   - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker)
-- Kubernetes
 - Nginx
 - Linux
+- Kubernetes
 - 设计模式
   - [23种设计模式](markdown/23种设计模式)
   - [单例模式](markdown/单例模式的几种实现方式)
