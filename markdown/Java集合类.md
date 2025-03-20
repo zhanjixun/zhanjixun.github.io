@@ -17,7 +17,7 @@
 | Hashtable            | 类似`HashMap`，方法用`synchronized`修饰 | 线程安全   | 无序     | 不允许（键和值都不能为null）  |
 | ConcurrentHashMap    | 分段锁（JDK7）或CAS+红黑树（JDK8+）     | 线程安全   | 无序     | 不允许（键和值都不能为null）  |
 
-### **详细说明**
+**详细说明**
 
 1. **List系列**
    - [ArrayList](markdown/ArrayList源码解析.md)：动态数组实现，随机访问快（O(1)），插入/删除慢（O(n)）。

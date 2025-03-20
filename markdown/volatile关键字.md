@@ -1,4 +1,4 @@
-# volatile关键字解析
+# volatile关键字
 
 Java中的`volatile`关键字主要用于解决多线程环境下的**可见性**和**有序性**问题。
 
