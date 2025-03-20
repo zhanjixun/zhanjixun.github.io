@@ -16,7 +16,7 @@ try {
 
 正常情况：先try后finally
 
-异常情况：先try执行发生异常语句（发生异常后try后面的代码不执行），然后catch，然后finally
+异常情况：先try执行到发生异常语句（发生异常后try后面的代码不执行），然后catch，然后finally
 
 return的顺序：finally > catch (异常情况) 、finally > try (正常情况)
 
