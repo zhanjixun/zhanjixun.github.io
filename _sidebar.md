@@ -40,7 +40,7 @@
       - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
     - Collections
   - Java8
-    - Stream
+    - [Stream](markdown/Java8中的Stream)
   - IO机制
     - BIO
     - NIO
