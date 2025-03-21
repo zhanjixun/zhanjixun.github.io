@@ -19,18 +19,23 @@
 
 **详细说明**
 
-1. **List系列**
-   - [ArrayList](markdown/ArrayList源码解析.md)：动态数组实现，随机访问快（O(1)），插入/删除慢（O(n)）。
-   - **LinkedList**：双向链表实现，插入/删除快（O(1)），随机访问慢（O(n)）。
-   - **Vector**：线程安全的动态数组，性能低于`ArrayList`，已逐渐被替代。
-   - **CopyOnWriteArrayList**：写操作复制新数组，读无锁，适合读多写少场景。
-2. **Set系列**
-   - **HashSet**：基于`HashMap`，元素唯一性通过`hashCode()`和`equals()`保证。
-   - **LinkedHashSet**：在`HashSet`基础上维护插入顺序链表。
-   - **TreeSet**：基于红黑树，支持自然排序或自定义比较器。
-3. **Map系列**
-   - **HashMap**：哈希表实现，允许null键和null值，非线程安全。
-   - **LinkedHashMap**：在`HashMap`基础上维护插入或访问顺序链表。
-   - **TreeMap**：红黑树实现，键有序。
-   - **Hashtable**：线程安全但性能低，不允许null键/值。
-   - **ConcurrentHashMap**：高并发场景下的线程安全哈希表，优于`Hashtable`。
+**List**
+
+- [ArrayList](markdown/ArrayList源码解析.md)：动态数组实现，随机访问快（O(1)），插入/删除慢（O(n)）。
+- **LinkedList**：双向链表实现，插入/删除快（O(1)），随机访问慢（O(n)）。
+- **Vector**：线程安全的动态数组，性能低于`ArrayList`，已逐渐被替代。
+- **CopyOnWriteArrayList**：写操作复制新数组，读无锁，适合读多写少场景。
+
+**Set**
+
+- **HashSet**：基于`HashMap`，元素唯一性通过`hashCode()`和`equals()`保证。
+- **LinkedHashSet**：在`HashSet`基础上维护插入顺序链表。
+- **TreeSet**：基于红黑树，支持自然排序或自定义比较器。
+
+**Map**
+
+- **HashMap**：哈希表实现，允许null键和null值，非线程安全。
+- **LinkedHashMap**：在`HashMap`基础上维护插入或访问顺序链表。
+- **TreeMap**：红黑树实现，键有序。
+- **Hashtable**：线程安全但性能低，不允许null键/值。
+- **ConcurrentHashMap**：高并发场景下的线程安全哈希表，优于`Hashtable`。
