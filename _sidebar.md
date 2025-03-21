@@ -107,7 +107,6 @@
 - Spring Boot
   - [自动配置原理](markdown/SpringBoot自动装配原理)
   - [配置项加载顺序](markdown/SpringBoot配置加载顺序)
-  - 自定义Stater
   - yml文件加载过程
 - Spring Cloud
 - Tomcat
