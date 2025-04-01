@@ -12,4 +12,4 @@ git commit -m 'script push'
 
 git push
 
-read -n 1 -s -r -p "Press any key to exit..."
+read -n 1 -s -r -p "按任意键退出..."
