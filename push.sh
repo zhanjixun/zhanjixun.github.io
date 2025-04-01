@@ -25,3 +25,7 @@ git add -A
 git commit -m 'script push'
 
 git push
+
+# 保持窗口不关闭
+echo "按任意键继续..."
+read -n 1 -s -r
