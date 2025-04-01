@@ -4,6 +4,8 @@ set -ev
 
 rm -rf .idea
 
+find ./assets/drawio -type f -name "*.bkp" -delete
+
 git pull
 
 git add -A
