@@ -9,6 +9,6 @@
 - 一目了然的图表
 
 
-[Github](https://gitee.com/zhanjixun/jbok)
+[Github](https://github.com/zhanjixun/zhanjixun.github.io)
 [开始阅读](/README.md)
 
