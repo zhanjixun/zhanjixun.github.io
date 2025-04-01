@@ -64,8 +64,7 @@
     - ConcurrentLinkedQueue
   - [多线程辅助工具类](markdown/多线程辅助工具类)
 - JVM
-  - 字节码与类加载
-    - [类加载机制](markdown/JVM类加载机制)
+  - [类加载机制](markdown/JVM类加载机制)
   - 内存与垃圾回收
   - 性能监控和优化
 - MySQL

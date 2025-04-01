@@ -26,5 +26,4 @@ git commit -m 'script push'
 
 git push
 
-# 保持窗口不关闭
 read -n 1 -s -r -p "Press any key to exit..."
