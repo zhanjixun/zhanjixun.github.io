@@ -27,7 +27,7 @@
 
 其中，这个函数f一般称为`哈希函数`，这个函数的设计好坏会直接影响到哈希表的优劣。举个例子，比如我们要在哈希表中执行插入操作：
 
-![](../assets/img/4a2466fd2eed346e.png)
+![](../assets/images/4a2466fd2eed346e.png)
 
 查找操作同理，先通过哈希函数计算出实际存储地址，然后从数组中对应地址取出即可。
 
@@ -67,7 +67,7 @@ static class Entry<K,V> implements Map.Entry<K,V> {
 
  所以，HashMap的整体结构如下
 
-![](../assets/img/33d6874892a7a055.png)
+![](../assets/images/33d6874892a7a055.png)
 
 简单来说，HashMap由`数组+链表`组成的，数组是HashMap的主体，链表则是主要为了`解决哈希冲突`而存在的。
 

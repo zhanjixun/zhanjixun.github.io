@@ -12,7 +12,7 @@ ThreadLocal通过为每个线程维护一个独立的变量副本来实现**线�
 >
 > 另外一种方案，就是使用空间换时间的方式，即使用`ThreadLocal`。使用`ThreadLocal`类访问共享变量时，会在每个线程的本地，都保存一份共享变量的拷贝副本。多线程对共享变量修改时，实际上操作的是这个变量副本，从而保证线性安全。
 
-![](../assets/img/drawio/ThreadLocal的原理与实现.svg)
+![](../assets/drawio/ThreadLocal的原理与实现.svg)
 
 ## 基本使用
 
@@ -55,7 +55,7 @@ ThreadLocalMap getMap(Thread t) {
 
 这里涉及三个类ThreadLocal、Thread和ThreadLocalMap，其中ThreadLocalMap是定义在ThreadLocal里的静态内部类，在Thread中有个成员对象是ThreadLocalMap类型的，用于存放当前线程的变量。三者关系如下图：
 
-![](../assets/img/2d3f8ba309a84f15.png)
+![](../assets/images/2d3f8ba309a84f15.png)
 
 ### set方法
 

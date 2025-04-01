@@ -1,6 +1,6 @@
 # Java线程池的使用
 
-![](..\assets\img\drawio\线程池工作流程.svg)
+![](../assets/drawio/线程池工作流程.svg)
 
 ## 为什么要使用线程池
 
