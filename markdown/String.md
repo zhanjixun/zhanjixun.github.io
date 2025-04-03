@@ -52,8 +52,6 @@ for (String value : arr) {
 System.out.println(s);
 ```
 
-参考：[Java 基础常见知识点&面试题总结(中)，2022 最新版！](https://mp.weixin.qq.com/s/PQA_sB5J2nK05ilKUDz0mQ)
-
 ## StringBuilder
 
 `StringBuilder` 是 Java 1.5 中新增的，在能力上和 `StringBuffer` 没有本质区别，但是它去掉了线程安全的部分，有效减小了开销，是绝大部分情况下进行字符串拼接的首选。
