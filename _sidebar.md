@@ -66,7 +66,7 @@
 - JVM
   - [类加载机制](markdown/JVM类加载机制)
   - [内存模型](markdown/JVM内存模型)
-  - 垃圾回收
+  - [垃圾回收](markdown/JVM垃圾回收机制)
   - 性能监控和优化
 - MySQL
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
