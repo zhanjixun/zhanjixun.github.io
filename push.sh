@@ -14,4 +14,4 @@ git commit -m 'script push'
 
 git push
 
-read -n 1 -s -r -p "按任意键退出..."
+# read -n 1 -s -r -p "按任意键退出..."
