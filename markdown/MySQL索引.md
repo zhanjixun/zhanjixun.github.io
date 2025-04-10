@@ -1,4 +1,16 @@
-# 索引失效场景
+# MySQL索引原理
+
+
+
+
+
+参考:
+
+[https://blog.csdn.net/qq_28018283/article/details/85050986](https://blog.csdn.net/qq_28018283/article/details/85050986)
+
+[http://blog.codinglabs.org/articles/theory-of-mysql-index.html](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
+
+## 索引失效场景
 
 - 当我们使用左或者左右**模糊匹配**的时候，也就是 `like %xx` 或者 `like %xx%`这两种方式都会造成索引失效；
 - 当我们在查询条件中对索引列**使用函数**，就会导致索引失效。
@@ -8,3 +20,4 @@
 - 在 WHERE 子句中，如果在 OR 前的条件列是索引列，而在 OR 后的条件列不是索引列，那么索引会失效。
 
 [https://www.cnblogs.com/xiaolincoding/p/15839040.html](https://www.cnblogs.com/xiaolincoding/p/15839040.html)
+

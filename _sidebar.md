@@ -72,10 +72,8 @@
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
   - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
   - [SQL执行计划分析](markdown/MySQL的执行计划)
-  - [事务管理机制](markdown/MySQL事务管理)
-  - 索引
-    - [MySQL索引原理](markdown/MySQL索引原理)
-    - [索引失效场景](markdown/索引失效场景)
+  - [事务](markdown/MySQL事务管理)
+  - [索引](markdown/MySQL索引)
   - 数据库引擎
   - 锁
   - 分表分库
