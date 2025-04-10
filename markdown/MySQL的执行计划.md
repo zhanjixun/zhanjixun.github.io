@@ -1,29 +1,35 @@
 # MySQL的执行计划
 
-![](..\assets\img\036ea3ed5070aa0f.jpg)
+![](..\assets\images\036ea3ed5070aa0f.jpg)
 
 查询结构中有12列，理解每一列的含义，对理解执行计划至关重要，下面进行说明。
 
+- 执行计划是 SQL 优化的核心工具，通过 `EXPLAIN` 分析访问路径和资源消耗
+- 重点关注 `type`、`key`、`rows` 和 `Extra` 字段
+- 优化目标：减少全表扫描、利用覆盖索引、避免临时表和额外排序
+
+## 执行计划字段
+
 ### id
 
-SELECT识别符，这是SELECT的查询序列号。
+select查询序列号，如果id相同，则从上到下顺序执行，如果不相同，序列号大的优先级比较高，先执行
 
 ### select_type
 
-SELECT类型,可以为以下任何一种:
+查询类型主要用来说明查询的类型：普通查询、联合查询、子查询等
 
-- SIMPLE:简单SELECT(不使用UNION或子查询)
-- PRIMARY:最外面的SELECT
-- UNION:UNION中的第二个或后面的SELECT语句
-- DEPENDENT UNION:UNION中的第二个或后面的SELECT语句,取决于外面的查询
-- UNION RESULT:UNION 的结果
-- SUBQUERY:子查询中的第一个SELECT
-- DEPENDENT SUBQUERY:子查询中的第一个SELECT,取决于外面的查询
-- DERIVED:导出表的SELECT(FROM子句的子查询)
+| select_type  | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| SIMPLE       | 简单的查询，查询中不饱和子查询或者Union                      |
+| PRIMARY      | 查询中包含任何复杂的子查询，最外层的查询类型为PRIMARY        |
+| SUBQUERY     | SELECT或者where中包含子查询                                  |
+| DERIVED      | 在from中包含子查询被标记为DERIVED(衍生)，Mysql会递归查询这些子查询，将查询结果放入临时表 |
+| UNION        | 第二个select中查询UNION,则被标记为UNION，如果UNION出现在from子查询中，最外层被标记为DERIVED |
+| UNION RESULT | 从UNION表获取结果的select                                    |
 
 ### table
 
-输出的行所引用的表
+表示查询数据所在的表
 
 ### partitions
 
@@ -31,37 +37,35 @@ SELECT类型,可以为以下任何一种:
 
 ### type
 
-联接类型。下面给出各种联接类型,按照从最佳类型到最坏类型进行排序:
+type代表访问类型，是判断sql执行性能比较关键的一个字段，性能从高到低依次是：
 
-- system:表仅有一行(=系统表)。这是const联接类型的一个特例。
-- const:表最多有一个匹配行,它将在查询开始时被读取。因为仅有一行,在这行的列值可被优化器剩余部分认为是常数。const表很快,因为它们只读取一次!
-- eq_ref:对于每个来自于前面的表的行组合,从该表中读取一行。这可能是最好的联接类型,除了const类型。
-- ref:对于每个来自于前面的表的行组合,所有有匹配索引值的行将从这张表中读取。
-- ref_or_:该联接类型如同ref,但是添加了MySQL可以专门搜索包含NULL值的行。
-- index_merge:该联接类型表示使用了索引合并优化方法。
-- unique_subquery:该类型替换了下面形式的IN子查询的ref: value IN (SELECT primary_key FROM single_table WHERE some_expr) unique_subquery是一个索引查找函数,可以完全替换子查询,效率更高。
-- index_subquery:该联接类型类似于unique_subquery。可以替换IN子查询,但只适合下列形式的子查询中的非唯一索引: value IN (SELECT key_column FROM single_table WHERE some_expr)
-- range:只检索给定范围的行,使用一个索引来选择行。
-- index:该联接类型与ALL相同,除了只有索引树被扫描。这通常比ALL快,因为索引文件通常比数据文件小。
-- ALL:对于每个来自于先前的表的行组合,进行完整的表扫描，说明查询就需要优化了。
+| 类型   | 说明                                              |
+| ------ | ------------------------------------------------- |
+| system | 表只有一行数据（系统表）                          |
+| const  | 通过主键或唯一索引直接找到一行（如 WHERE id = 1） |
+| eq_ref | 用于“=”运算符比较的索引列                         |
+| ref    | 使用非唯一索引查找                                |
+| rang   | 索引范围扫描                                      |
+| index  | 全索引扫描                                        |
+| ALL    | 全表扫描                                          |
 
 一般来说，得保证查询至少达到range级别，最好能达到ref。
 
 ### possible_keys
 
-指出MySQL能使用哪个索引在该表中找到行
+可能使用的索引
 
 ### key
 
-显示MySQL实际决定使用的键(索引)。如果没有选择索引,键是NULL。
+实际使用的索引，如果为null，表示没有用到索引
 
 ### key_len
 
-显示MySQL决定使用的键长度。如果键是NULL,则长度为NULL。在不损失精确性的情况下，长度越短越好
+表示索引中使用的字节数，可以根据这个字段计算查询中索引使用的长度，长度越短越好。
 
 ### ref
 
-显示使用哪个列或常数与key一起从表中选择行。
+表示索引的哪一列被使用
 
 ### rows
 
@@ -69,19 +73,14 @@ SELECT类型,可以为以下任何一种:
 
 ### filtered
 
-显示了通过条件过滤出的行数的百分比估计值。
+根据表统计信息和索引选用情况，大致计算出查询到所需数据需要查询的行数
 
 ### Extra
 
-该列包含MySQL解决查询的详细信息
+额外信息：
 
-- Distinct:MySQL发现第1个匹配行后,停止为当前的行组合搜索更多的行。
-- Select tables optimized away MySQL根本没有遍历表或索引就返回数据了，表示已经优化到不能再优化了
-- Not exists:MySQL能够对查询进行LEFT JOIN优化,发现1个匹配LEFT JOIN标准的行后,不再为前面的的行组合在该表内检查更多的行。
-- range checked for each record (index map: #):MySQL没有发现好的可以使用的索引,但发现如果来自前面的表的列值已知,可能部分索引可以使用。
-- Using filesort:MySQL需要额外的一次传递,以找出如何按排序顺序检索行，说明查询就需要优化了。
-- Using index:从只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息。
-- Using temporary:为了解决查询,MySQL需要创建一个临时表来容纳结果，说明查询就需要优化了。
-- Using where:WHERE 子句用于限制哪一个行匹配下一个表或发送到客户。
-- Using sort_union(…), Using union(…), Using intersect(…):这些函数说明如何为index_merge联接类型合并索引扫描。
-- Using index for group-by:类似于访问表的Using index方式,Using index for group-by表示MySQL发现了一个索引,可以用来查 询GROUP BY或DISTINCT查询的所有列,而不要额外搜索硬盘访问实际的表。
+- **Using where**：需在存储引擎层过滤数据。
+- **Using index**：仅通过索引即可获取数据（覆盖索引）。
+- **Using temporary**：使用了临时表（常见于 `GROUP BY`、`ORDER BY`）。
+- **Using filesort**：需额外排序（可能影响性能）。
+- **Using join buffer**：使用了连接缓存（联表查询较多时需注意）。
