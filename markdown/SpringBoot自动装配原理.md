@@ -81,5 +81,84 @@ public class DataSourceAutoConfiguration {
 
 ## 自定义Stater
 
-Spring Boot可以通过自定义Stater实现自动引入Bean，实现框架自动装配。
+Spring Boot可以通过自定义Stater实现自动引入Bean，实现框架自动装配。步骤如下：
+
+### 添加自动配置类
+
+```java
+@Configuration
+@ConditionalOnProperty(value = "sms.enable", havingValue = "true", matchIfMissing = true)
+@EnableConfigurationProperties({SmsProperties.class})
+public class SmsAutoConfiguration {
+
+    @Autowired
+    private SmsProperties conf;
+
+    @Bean
+    @ConditionalOnMissingBean(SmsService.class)
+    public SmsService importService() {
+        return new SmsSeriveImpl(conf.getKey());
+    }
+}
+
+@Data
+@ConfigurationProperties(prefix = "sms")
+public class SmsProperties {
+    private String key;
+}
+
+public interface SmsService {
+    void send(String content);
+}
+
+public class SmsSeriveImpl implements SmsService {
+    private final String key;
+    public SmsSeriveImpl(String key) {
+        this.key = key;
+    }    
+    @Override
+    public void send(String content) {
+        System.out.println("发送邮件:" + content);
+    }
+}
+```
+
+### 项目引入stater
+
+```xml
+<dependency>
+    <groupId>org.example</groupId>
+    <artifactId>xxx-stater</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+### 添加配置信息
+
+```yaml
+sms:
+  enable: true
+  key: key
+```
+
+### 注入Service
+
+```java
+@Autowired
+private SmsService smsService;
+
+@GetMapping("/postMsg")
+public Object postMsg(@RequestParam String text) {
+    smsService.send("hello " + text);
+    return "success";
+}
+```
+
+接着请求[http://localhost:8080/postMsg?text=jim](http://localhost:8080/postMsg?text=jim)可以看到返回了success，控制台打印了日志：
+
+```log
+[INFO] 2025-04-11 13:57:58.290 [c.z.w.aspect.ControllerLogAspect:47] [b7ff6b73a2f1407f994003dbbfdea990] 请求开始 => IP:0:0:0:0:0:0:0:1 openid:null 地址:GET http://localhost:8080/postMsg 入参:["jim"]
+[INFO] 2025-04-11 13:57:58.295 [o.example.service.impl.SmsSeriveImpl:17] [b7ff6b73a2f1407f994003dbbfdea990] 发送邮件:hello jim
+[INFO] 2025-04-11 13:57:58.295 [c.z.w.aspect.ControllerLogAspect:51] [b7ff6b73a2f1407f994003dbbfdea990] 请求结束 => 耗时:[13ms] 返回值:success 
+```
 
