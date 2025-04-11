@@ -33,15 +33,6 @@ public class MyApplication {
 - `@AutoConfigurationPackage`：扫描主配置类（@SpringBootApplication标注的类）
 - `@Import(AutoConfigurationImportSelector.class)`：导入自动配置核心类
 
-```java
-//...
-@AutoConfigurationPackage
-@Import(AutoConfigurationImportSelector.class)
-public @interface EnableAutoConfiguration {
-	//...
-}
-```
-
 ## AutoConfigurationImportSelector
 
 `AutoConfigurationImportSelector`是自动装配的核心类，它实现`ImportSelector`接口，实现了`selectImports()`方法，从所有引入的依赖JAR包中读取`META-INF/spring.factories`文件，并获取EnableAutoConfiguration键下的配置类列表。方法调用链如下：
