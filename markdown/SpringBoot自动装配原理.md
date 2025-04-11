@@ -79,11 +79,11 @@ public class DataSourceAutoConfiguration {
 }
 ```
 
-## 自定义Stater
+## 自定义starter
 
-Spring Boot可以通过自定义Stater实现自动引入Bean，实现框架自动装配。步骤如下：
+Spring Boot可以通过自定义starter实现自动引入Bean，实现框架自动装配。步骤如下：
 
-### 添加自动配置类
+### 定义@Configuration类
 
 ```java
 @Configuration
@@ -123,25 +123,31 @@ public class SmsSeriveImpl implements SmsService {
 }
 ```
 
-### 项目引入stater
+### 注册配置类
+
+在META-INF/spring.factories文件中声注册配置类
+
+```properties
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.example.SmsAutoConfiguration
+```
+
+### 创建 starter 模块，引入依赖
+
+引入maven依赖，添加配置信息，注入service就可以使用了
 
 ```xml
 <dependency>
     <groupId>org.example</groupId>
-    <artifactId>xxx-stater</artifactId>
+    <artifactId>xxx-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
-
-### 添加配置信息
 
 ```yaml
 sms:
   enable: true
   key: key
 ```
-
-### 注入Service
 
 ```java
 @Autowired

@@ -103,7 +103,7 @@
   - 源码分析
 - Spring Boot
   - [自动装配原理](markdown/SpringBoot自动装配原理)
-  - [配置项加载顺序](markdown/SpringBoot配置加载顺序)
+  - [配置文件优先级](markdown/SpringBoot配置文件优先级)
 - Spring Cloud
 - Tomcat
 - Redis
@@ -133,7 +133,7 @@
 - 专业术语与编程思想
   - [高并发性能指标](markdown/高并发性能指标)
   - [微服务之服务治理](markdown/微服务之服务治理)
-  - 面向对象
+  - OOP 面向对象
     - 三大特性：封装、继承、多态
     - 实现多态有三个必要条件:继承、重写、向上转型
   - [DDD](markdown/DDD)

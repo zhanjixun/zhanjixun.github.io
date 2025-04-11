@@ -62,11 +62,3 @@ Spring事务的传播行为说的是，当多个事务同时存在的时候，sp
 
 ⑤ ISOLATION_SERIALIZABLE：**串行化**，一个事务在执行的过程中完全看不到其他事务对数据库所做的更新。
 
- 
-
-参考：
-
-https://blog.csdn.net/weixin_39625809/article/details/80707695
-
-https://segmentfault.com/a/1190000013341344
-
