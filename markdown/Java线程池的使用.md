@@ -90,10 +90,10 @@ IO 密集型任务（如网络请求、文件读写）：`核心线程数 ≈ CP
 Executors提供了4种创建线程池的方式：
 
 
-| 线程池                  | 参数                                                         | 特点                                                         | 适用场景                             |
-| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------ |
-| newFixedThreadPool      | corePoolSize = maxPoolSize = nThreads（固定线程数）<br> 无界队列（`LinkedBlockingQueue`） | 线程数量固定，无空闲线程回收                                 | 负载稳定的长期任务（如后台数据处理） |
-| newCachedThreadPool     | corePoolSize = 0，maxPoolSize = Integer.MAX_VALUE（理论上无限扩容）<br/>同步移交队列（`SynchronousQueue`）<br/> 线程存活时间：60秒 | 线程数量弹性伸缩，空闲线程超时回收；新任务直接移交线程执行，无队列缓冲 | 适合短时异步任务                     |
-| newSingleThreadExecutor | corePoolSize = maxPoolSize = 1（仅1个线程）<br/>无界队列（`LinkedBlockingQueue`） | 任务严格按提交顺序执行（类似单线程）                         | 保证顺序执行                         |
-| newScheduledThreadPool  | maxPoolSize = Integer.MAX_VALUE<br/>延迟队列（`DelayedWorkQueue`） | 支持定时任务和周期性任务                                     | 支持定时/周期性任务                  |
+| 线程池                  | 参数                                                         | 队列                           | 特点                                                         | 适用场景                             |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------ | ------------------------------------------------------------ | ------------------------------------ |
+| newFixedThreadPool      | corePoolSize = maxPoolSize = nThreads（固定线程数）          | 无界队列`LinkedBlockingQueue`  | 线程数量固定，无空闲线程回收                                 | 负载稳定的长期任务（如后台数据处理） |
+| newCachedThreadPool     | corePoolSize = 0，maxPoolSize = Integer.MAX_VALUE（理论上无限扩容） | 同步移交队列`SynchronousQueue` | 线程数量弹性伸缩，空闲线程超时回收；新任务直接移交线程执行，无队列缓冲 | 适合短时异步任务                     |
+| newSingleThreadExecutor | corePoolSize = maxPoolSize = 1（仅1个线程）                  | 无界队列`LinkedBlockingQueue`  | 任务严格按提交顺序执行（类似单线程）                         | 保证顺序执行                         |
+| newScheduledThreadPool  | maxPoolSize = Integer.MAX_VALUE                              | 延迟队列`DelayedWorkQueue`     | 支持定时任务和周期性任务                                     | 支持定时/周期性任务                  |
 
