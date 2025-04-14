@@ -113,6 +113,7 @@
   - [过期策略和内存淘汰机制](markdown/Redis过期策略和内存淘汰机制)
   - 事务
   - [常见问题](markdown/Redis常见问题)
+  - [分布式锁](markdown/Redis实现分布式锁)
   - Redis 6.0 多线程
 - RocketMQ
   - [RocketMQ实现顺序消息](markdown/RocketMQ实现顺序消息)
