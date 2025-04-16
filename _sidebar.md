@@ -47,6 +47,11 @@
     - AIO
   - 异常处理
     - [try-catch-finally-return执行顺序](markdown/try-catch-finally-return执行顺序)
+  - JVM
+    - [类加载机制](markdown/JVM类加载机制)
+    - [内存模型](markdown/JVM内存模型)
+    - [垃圾回收](markdown/JVM垃圾回收机制)
+    - 性能监控和优化
   - [Java中的代理模式](markdown/Java中的代理模式)
   - [Java SPI](markdown/JavaSPI)
   - 序列化
@@ -63,11 +68,6 @@
     - BlockingQueue
     - ConcurrentLinkedQueue
   - [多线程辅助工具类](markdown/多线程辅助工具类)
-- JVM
-  - [类加载机制](markdown/JVM类加载机制)
-  - [内存模型](markdown/JVM内存模型)
-  - [垃圾回收](markdown/JVM垃圾回收机制)
-  - 性能监控和优化
 - MySQL
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
   - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
@@ -85,8 +85,12 @@
   - IOC
     - [Bean的生命周期](markdown/Bean的生命周期)
   - [AOP](markdown/Spring的AOP)
-  - [事务](markdown/Spring中的事务管理)
-- Spring MVC
+  - [事务](markdown/Spring事务管理)
+  - Spring MVC
+  - Spring Boot
+    - [自动装配原理](markdown/SpringBoot自动装配原理)
+    - [配置文件优先级](markdown/SpringBoot配置文件优先级)
+  - Spring Cloud
 - Dubbo
   - 分布式概念和分布式模块划分
   - RPC实现原理
@@ -101,11 +105,6 @@
     - 多版本注册
     - 多注册中心
   - 源码分析
-- Spring Boot
-  - [自动装配原理](markdown/SpringBoot自动装配原理)
-  - [配置文件优先级](markdown/SpringBoot配置文件优先级)
-- Spring Cloud
-- Tomcat
 - Redis
   - [5种数据类型及使用场景](markdown/Redis的五种数据类型及使用场景)
   - [部署方式](markdown/Redis的部署方式)
@@ -115,17 +114,19 @@
   - [常见问题](markdown/Redis常见问题)
   - [分布式锁](markdown/Redis实现分布式锁)
   - Redis 6.0 多线程
-- RocketMQ
-  - [RocketMQ实现顺序消息](markdown/RocketMQ实现顺序消息)
-  - [RocketMQ怎么防止消息丢失](markdown/RocketMQ怎么防止消息丢失)
-- Kafka
+- 消息队列
+  - RocketMQ
+    - [RocketMQ实现顺序消息](markdown/RocketMQ实现顺序消息)
+    - [RocketMQ怎么防止消息丢失](markdown/RocketMQ怎么防止消息丢失)
+  - Kafka
 - Elasticsearch
+- Nginx
 - Apollo
 - Zookeeper
+- Tomcat
 - Netty
 - Docker
   - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker)
-- Nginx
 - Linux
 - Kubernetes
 - 设计模式
