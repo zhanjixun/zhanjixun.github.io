@@ -39,22 +39,19 @@
       - TreeMap
       - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
     - Collections
-  - Java8
-    - [Stream](markdown/Java8中的Stream)
   - IO机制
     - BIO
     - NIO
     - AIO
-  - 异常处理
-    - [try-catch-finally-return执行顺序](markdown/try-catch-finally-return执行顺序)
+  - [异常处理](markdown/try-catch-finally-return执行顺序)
+  - [Java中的代理模式](markdown/Java中的代理模式)
+  - [Java SPI](markdown/JavaSPI)
+  - 序列化
   - JVM
     - [类加载机制](markdown/JVM类加载机制)
     - [内存模型](markdown/JVM内存模型)
     - [垃圾回收](markdown/JVM垃圾回收机制)
     - 性能监控和优化
-  - [Java中的代理模式](markdown/Java中的代理模式)
-  - [Java SPI](markdown/JavaSPI)
-  - 序列化
 - 多线程
   - [线程](markdown/线程)
   - [volatile关键字](markdown/volatile关键字)
@@ -76,14 +73,12 @@
   - [执行计划](markdown/MySQL的执行计划)
   - 数据库引擎
   - 锁
-  - 分表分库
 - Mybatis
   - [逻辑分页和物理分页](markdown/逻辑分页和物理分页)
   - [Mybatis的缓存](markdown/Mybatis的缓存)
   - [Mybatis拦截器原理](markdown/Mybatis拦截器原理)
 - Spring
-  - IOC
-    - [Bean的生命周期](markdown/Bean的生命周期)
+  - [IOC](markdown/Bean的生命周期)
   - [AOP](markdown/Spring的AOP)
   - [事务](markdown/Spring事务管理)
   - Spring MVC
@@ -125,8 +120,7 @@
 - Zookeeper
 - Tomcat
 - Netty
-- Docker
-  - [虚拟化容器技术：Docker](markdown/虚拟化容器技术：Docker)
+- [Docker](markdown/虚拟化容器技术：Docker)
 - Linux
 - Kubernetes
 - 设计模式
@@ -141,7 +135,8 @@
   - [DDD](markdown/DDD)
 - 常见场景实现
   - [分布式锁](markdown/分布式锁)
-  - [分布式事务解决方案](markdown/分布式事务解决方案)
+  - [分布式事务](markdown/分布式事务解决方案)
+  - [分表分库](markdown/分表分库)
   - [延迟队列](markdown/延迟队列)
   - [秒杀系统](markdown/秒杀系统的实现)
   - [如何设计高并发系统](markdown/如何设计一个高并发系统)
