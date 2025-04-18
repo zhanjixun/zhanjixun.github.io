@@ -2,7 +2,7 @@
 
 set -ev
 
-rm -rf .idea
+# rm -rf .idea
 
 find ./assets/drawio -type f -name "*.bkp" -delete
 
