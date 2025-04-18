@@ -1,0 +1,16 @@
+Elasticsearch
+	安装
+	核心概念
+	restful api
+	DSL
+	java连接方式：
+		1、REST Client 
+		2、Jest 
+		3、Spring Data 
+		4、Spring Data Elasticsearch Repositories
+	部署方式
+	数据同步方式：
+		1、cdc（binlog）
+		2、mq消息 业务层推送消息
+		3、定时批处理同步（Logstash）
+
