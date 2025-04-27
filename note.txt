@@ -1,6 +1,12 @@
 Elasticsearch
-	安装
+	原理
+		倒排索引
 	核心概念
+		文档(Document)  ：一条数据
+		字段(Field)     ：数据里面的json字段
+		索引(Index)     ：表
+		映射(Mapping)   ：表结构约束
+	安装
 	restful api
 	DSL
 	java连接方式：
@@ -14,3 +20,4 @@ Elasticsearch
 		2、mq消息 业务层推送消息
 		3、定时批处理同步（Logstash）
 
+https://www.cnblogs.com/sexintercourse/p/18646560
