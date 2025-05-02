@@ -15,6 +15,7 @@
 			interrupt 配合Thread.currentThread().isInterrupted()主动在run代码中中断线程
 	线程安全
 	锁
+		对象锁 类锁 https://mp.weixin.qq.com/s/3Ry2bm0ZaeA8IkAzc3_lDA
 		线程通信 
 			synchronized ：wait notify/notifyAll
 				这两个方法必须在synchronized中使用，其实就是锁的方法
