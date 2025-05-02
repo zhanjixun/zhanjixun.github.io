@@ -1,3 +1,18 @@
+多线程
+	为什么使用多线程?
+	线程创建方式
+		1.继承Thread 
+		2.实现Runnable 
+		3.实现Callable
+	线程状态
+		新建 就绪 运行 阻塞 死亡
+	线程调度
+		线程中断
+		interrupt yield join wait notify notifyAll
+	线程安全
+		锁
+		死锁
+	线程池
 Elasticsearch
 	原理
 		倒排索引

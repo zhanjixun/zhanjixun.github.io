@@ -41,17 +41,12 @@
   - 面向对象
     - [创建对象的5种方式](markdown/Java创建对象的5种方式)
   - 多线程
-    - [线程](markdown/线程)
+    - [线程](markdown/Java多线程)
     - [volatile关键字](markdown/volatile关键字)
     - [Synchronized关键字](markdown/Synchronized关键字)
     - [Lock体系](markdown/Lock体系)
     - [线程池](markdown/Java线程池的使用)
-    - 并发容器
-      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
-      - CopyOnWriteArrayList
-      - [ThreadLocal](markdown/ThreadLocal的原理与实现)
-      - BlockingQueue
-      - ConcurrentLinkedQueue
+    - [ThreadLocal](markdown/ThreadLocal的原理与实现)
     - [多线程辅助工具类](markdown/多线程辅助工具类)
   - IO机制
   - [异常处理](markdown/try-catch-finally-return执行顺序)
