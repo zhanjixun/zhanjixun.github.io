@@ -39,12 +39,26 @@
       - TreeMap
       - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
     - Collections
+  - 面向对象
   - IO机制
     - BIO
     - NIO
     - AIO
   - [异常处理](markdown/try-catch-finally-return执行顺序)
-  - [Java中的代理模式](markdown/Java中的代理模式)
+  - 多线程
+    - [线程](markdown/线程)
+    - [volatile关键字](markdown/volatile关键字)
+    - [Synchronized关键字](markdown/Synchronized关键字)
+    - [Lock体系](markdown/Lock体系)
+    - [线程池](markdown/Java线程池的使用)
+    - 并发容器
+      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
+      - CopyOnWriteArrayList
+      - [ThreadLocal](markdown/ThreadLocal的原理与实现)
+      - BlockingQueue
+      - ConcurrentLinkedQueue
+    - [多线程辅助工具类](markdown/多线程辅助工具类)
+  - [代理模式](markdown/Java中的代理模式)
   - [Java SPI](markdown/JavaSPI)
   - 序列化
   - JVM
@@ -52,19 +66,6 @@
     - [内存模型](markdown/JVM内存模型)
     - [垃圾回收](markdown/JVM垃圾回收机制)
     - 性能监控和优化
-- 多线程
-  - [线程](markdown/线程)
-  - [volatile关键字](markdown/volatile关键字)
-  - [Synchronized关键字](markdown/Synchronized关键字)
-  - [Lock体系](markdown/Lock体系)
-  - [线程池](markdown/Java线程池的使用)
-  - 并发容器
-    - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
-    - CopyOnWriteArrayList
-    - [ThreadLocal](markdown/ThreadLocal的原理与实现)
-    - BlockingQueue
-    - ConcurrentLinkedQueue
-  - [多线程辅助工具类](markdown/多线程辅助工具类)
 - MySQL
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
   - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
