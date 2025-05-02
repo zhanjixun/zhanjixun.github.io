@@ -10,5 +10,5 @@
 
 
 [Github](https://github.com/zhanjixun/zhanjixun.github.io)
-[开始阅读](/README.md)
+[开始阅读](/markdown/基本数据类型)
 

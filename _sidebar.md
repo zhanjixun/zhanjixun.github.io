@@ -26,7 +26,6 @@
   - [基本数据类型](markdown/基本数据类型)
   - [运算符](markdown/Java运算符)
   - [String](markdown/String)
-  - [Java创建对象的5种方式](markdown/Java创建对象的5种方式)
   - [集合类](markdown/Java集合类)
     - List
       - [ArrayList](markdown/ArrayList源码解析)
@@ -40,11 +39,7 @@
       - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
     - Collections
   - 面向对象
-  - IO机制
-    - BIO
-    - NIO
-    - AIO
-  - [异常处理](markdown/try-catch-finally-return执行顺序)
+    - [创建对象的5种方式](markdown/Java创建对象的5种方式)
   - 多线程
     - [线程](markdown/线程)
     - [volatile关键字](markdown/volatile关键字)
@@ -58,6 +53,8 @@
       - BlockingQueue
       - ConcurrentLinkedQueue
     - [多线程辅助工具类](markdown/多线程辅助工具类)
+  - IO机制
+  - [异常处理](markdown/try-catch-finally-return执行顺序)
   - [代理模式](markdown/Java中的代理模式)
   - [Java SPI](markdown/JavaSPI)
   - 序列化
@@ -65,7 +62,6 @@
     - [类加载机制](markdown/JVM类加载机制)
     - [内存模型](markdown/JVM内存模型)
     - [垃圾回收](markdown/JVM垃圾回收机制)
-    - 性能监控和优化
 - MySQL
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
   - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
