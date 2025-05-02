@@ -7,12 +7,24 @@
 	线程状态
 		新建 就绪 运行 阻塞 死亡
 	线程调度
-		线程中断
-		interrupt yield join wait notify notifyAll
+		状态控制 
+			sleep 使线程进入阻塞状态，睡眠时间到后回到就绪状态
+			yield 放弃cpu时间片，使线程进入就绪状态
+			join  在一个线程中调用另一个线程的join方法，当前线程就会等待目标线程执行完才继续执行
+		线程中断 
+			interrupt 配合Thread.currentThread().isInterrupted()主动在run代码中中断线程
 	线程安全
-		锁
+	锁
+		线程通信 
+			synchronized ：wait notify/notifyAll
+				这两个方法必须在synchronized中使用，其实就是锁的方法
+				notify唤醒等待的线程，如果有多个则随机唤醒一个
+				wait会立即释放锁并开始等待；notify后不会马上释放锁，而是等到同步方法执行完才释放；被唤醒的线程需要重新竞争锁
+				虚假唤醒：线程在调用wait方法后，没有其他线程notify显式唤醒，自己从等待状态返回
+			Lock Condition：await signal/signalAll
 		死锁
 	线程池
+	线程工具类
 Elasticsearch
 	原理
 		倒排索引
