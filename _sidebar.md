@@ -26,7 +26,7 @@
   - [基本数据类型](markdown/基本数据类型)
   - [运算符](markdown/Java运算符)
   - [String](markdown/String)
-  - [集合类](markdown/Java集合类)
+  - [集合](markdown/Java集合类)
     - List
       - [ArrayList](markdown/ArrayList源码解析)
       - [LinkedList](markdown/LinkedList源码解析)
