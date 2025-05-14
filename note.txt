@@ -1,22 +1,5 @@
 Queue
 	队列 先进先出FIFO 线性结构
-	Iterable (接口)
-	└── Collection (接口)
-	    └── Queue (接口)
-	        ├── Deque (接口)                 // 双端队列（允许两端操作）
-	        │   ├── ArrayDeque               // 动态数组实现
-	        │   └── LinkedList               // 链表实现（同时实现List）
-	        │
-	        ├── BlockingQueue (接口)        // 线程安全的阻塞队列
-	        │   ├── ArrayBlockingQueue     // 固定大小的数组实现
-	        │   ├── LinkedBlockingQueue    // 可选容量的链表实现
-	        │   ├── PriorityBlockingQueue  // 无界优先级阻塞队列
-	        │   ├── SynchronousQueue       // 直接传递元素的队列
-	        │   └── DelayQueue             // 元素按延迟时间排序
-	        │
-	        └── AbstractQueue (抽象类)      // 队列的抽象实现
-	            ├── PriorityQueue          // 堆结构的优先级队列
-	            └── ConcurrentLinkedQueue  // 非阻塞线程安全链表队列
 	Queue接口方法
 	            添加   移除     查看
 	抛异常       add   remove   element

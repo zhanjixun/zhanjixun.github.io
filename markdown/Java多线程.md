@@ -10,6 +10,8 @@
 2. 实现Runnable 
 3. 实现Callable
 
+
+
 ## 线程的状态
 
 ![](../assets/drawio/线程的状态.svg)
@@ -18,9 +20,9 @@
 
 ### 状态控制
 
-sleep 使线程进入阻塞状态，睡眠时间到后回到就绪状态
-yield 放弃cpu时间片，使线程进入就绪状态
-join  在一个线程中调用另一个线程的join方法，当前线程就会等待目标线程执行完才继续执行
+- sleep 使线程进入阻塞状态，睡眠时间到后回到就绪状态
+- yield 放弃cpu时间片，使线程进入就绪状态
+- join  在一个线程中调用另一个线程的join方法，当前线程就会等待目标线程执行完才继续执行
 
 ### 线程中断 
 
@@ -80,6 +82,4 @@ synchronized ：wait notify/notifyAll
 				虚假唤醒：线程在调用wait方法后，没有其他线程notify显式唤醒，自己从等待状态返回
 			Lock Condition：await signal/signalAll
 
-## 线程池
-
-## 线程工具类
+## 

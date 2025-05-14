@@ -7,11 +7,7 @@ public class ArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 ```
 
-ArrayList 实现了 List 接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入`null`元素。
-
-ArrayList 实现了`RandomAccess`，说明 ArrayList 支持随机下标访问。
-
-![](../assets/images/ad13bfc3bb62a878.png)
+ArrayList 实现了 List 接口，是顺序容器，即元素存放的数据与放进去的顺序相同，允许放入`null`元素。ArrayList 实现了`RandomAccess`，说明 ArrayList 支持随机下标访问。
 
 ## 成员对象
 
@@ -38,7 +34,7 @@ protected transient int modCount = 0;
 ## 构造器
 
 ```java
-//通过参数指明初始化数组的长度
+// 通过参数指明初始化数组的长度
 public ArrayList(int initialCapacity) {
     if (initialCapacity > 0) {
         this.elementData = new Object[initialCapacity];
@@ -48,11 +44,13 @@ public ArrayList(int initialCapacity) {
         throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
     }
 }
-//按默认的容量初始化数组
+
+// 按默认的容量初始化数组
 public ArrayList() {
     this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
 }
 
+// 传入集合复制到新建ArrayList对象中
 public ArrayList(Collection<? extends E> c) {
     elementData = c.toArray();
     if ((size = elementData.length) != 0) {        
@@ -96,7 +94,7 @@ private void ensureExplicitCapacity(int minCapacity) {
 }
 ```
 
- 当ArrayList在调用`add()`方法的时候，会先检查`size + 1`有没有超过数组容量。如果超过`最小所需容量`超过当前对象数组的长度，则触发扩容，即是调用`grow()`方法。
+当ArrayList在调用`add()`方法的时候，会先检查`size + 1`有没有超过数组容量。如果超过`最小所需容量`超过当前对象数组的长度，则触发扩容，即是调用`grow()`方法。
 
 ```java
 private void grow(int minCapacity) {
@@ -238,9 +236,9 @@ public void clear() {
 - `元素查改快`，因为可以使用下标访问。
 - 元素可重复，可以为NULL。
 
-# ArrayList线程安全的问题
+## ArrayList线程安全的问题
 
-## 为什么说ArrayList不是线程安全？
+### 为什么说ArrayList不是线程安全？
 
 ```java
 public boolean add(E e) {
@@ -277,7 +275,7 @@ public boolean add(E e) {
 
 这样线程AB执行完毕后，理想中情况为size为2，elementData下标0的位置为A，下标1的位置为B。而实际情况变成了size为2，elementData下标为0的位置变成了B，下标1的位置上什么都没有。并且后续除非使用set方法修改此位置的值，否则将一直为null，因为size为2，添加元素时会从下标为2的位置上开始。
 
-## 如何解决线程安全问题
+### 如何解决线程安全问题
 
 ArrayList -> Vector -> SynchronizedList -> CopyOnWriteArrayList
 
@@ -329,18 +327,18 @@ for (int i = 1; i <= 10; i++) {
 }
 ```
 
-## <span id="vector">Vector为什么是线程安全的？</span>
+### <span id="vector">Vector为什么是线程安全的？</span>
 
 Vector的实现跟ArrayList相似，它实现线程的方式是将所有方法加上`synchronized`关键字，包括`get()`、`indexOf()`和`contains`等这种非修改操作方法。这样会造成Vector的性能严重下降。
 
-### 类声明
+#### 类声明
 
 ```java
 public class Vector<E> extends AbstractList<E>
     implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 ```
 
-### 成员对象
+#### 成员对象
 
 ```java
 //存放数据的对象数组
@@ -353,7 +351,7 @@ protected int elementCount;
 protected int capacityIncrement;
 ```
 
-### 构造器
+#### 构造器
 
 ```java
 public Vector(int initialCapacity, int capacityIncrement) {
@@ -381,7 +379,7 @@ public Vector(Collection<? extends E> c) {
 }
 ```
 
-### 增删改操作
+#### 增删改操作
 
 都是给方法加上`synchronized`关键字实现线程安全
 
@@ -436,7 +434,7 @@ public synchronized E set(int index, E element) {
 }
 ```
 
-### 查询操作
+#### 查询操作
 
 查询操作也加上了`synchronized`关键字
 
@@ -465,7 +463,7 @@ public synchronized int indexOf(Object o, int index) {
 }
 ```
 
-## <span id="synchronizedList">同步列表synchronizedList</span>
+### <span id="synchronizedList">同步列表synchronizedList</span>
 
 `java.util.Collections`中提供了很多集合操作的工具方法，其中就有线程安全的，主要有这些方法：
 
@@ -524,13 +522,13 @@ static class SynchronizedCollection<E> implements Collection<E>, Serializable {
 }
 ```
 
-## <span id="CopyOnWriteArrayList">CopyOnWriteArrayList是怎么实现线程安全的</span>
+### <span id="CopyOnWriteArrayList">CopyOnWriteArrayList是怎么实现线程安全的</span>
 
-### 写入时复制（Copy-On-Write）思想
+#### 写入时复制（Copy-On-Write）思想
 
 写入时复制（CopyOnWrite，简称COW）思想是计算机程序设计领域中的一种优化策略。其核心思想是，如果有多个调用者（Callers）同时要求相同的资源（如内存或者是磁盘上的数据存储），他们会共同获取相同的指针指向相同的资源，直到某个调用者视图修改资源内容时，系统才会真正复制一份专用副本（private copy）给该调用者，而其他调用者所见到的最初的资源仍然保持不变。这过程对其他的调用者都是透明的（transparently）。此做法主要的优点是如果调用者没有修改资源，就不会有副本（private copy）被创建，因此多个调用者只是读取操作时可以共享同一份资源。
 
-### 实现原理
+#### 实现原理
 
 > A thread-safe variant of {@link java.util.ArrayList} in which all mutative operations ({@code add}, {@code set}, and so on) are implemented by making a fresh copy of the underlying array.
 
@@ -589,11 +587,11 @@ public E get(int index) {
 }
 ```
 
-### 优点
+#### 优点
 
 对于`读多写少`的数据，由于读操作是没有加锁的，这样能提高程序在并发情况下的访问性能。
 
-### 缺点
+#### 缺点
 
 这种实现方式只是保证数据的`最终一致性`，当在进行写操作复制数据还没替换的时候，其他线程读取到的仍是旧数据。
 
