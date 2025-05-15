@@ -53,10 +53,7 @@
   - [代理模式](markdown/Java中的代理模式)
   - [Java SPI](markdown/JavaSPI)
   - 序列化
-  - JVM
-    - [类加载机制](markdown/JVM类加载机制)
-    - [内存模型](markdown/JVM内存模型)
-    - [垃圾回收](markdown/JVM垃圾回收机制)
+  - [JVM](markdown/JVM)
 - MySQL
   - [数据库设计的三大范式](markdown/数据库设计的三大范式)
   - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
