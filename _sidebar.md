@@ -55,8 +55,6 @@
   - 序列化
   - [JVM](markdown/JVM)
 - MySQL
-  - [数据库设计的三大范式](markdown/数据库设计的三大范式)
-  - [一条查询语句的执行过程](markdown/一条查询语句的执行过程)
   - [事务](markdown/MySQL事务管理)
   - [索引](markdown/MySQL索引)
   - [执行计划](markdown/MySQL的执行计划)
