@@ -33,10 +33,10 @@
     - Set
     - Queue
     - Map
-      - [HashMap](markdown/HashMap实现原理及源码分析)
+      - [HashMap](markdown/HashMap)
       - HashTable
       - TreeMap
-      - [ConcurrentHashMap](markdown/ConcurrentHashMap实现原理及源码分析)
+      - [ConcurrentHashMap](markdown/ConcurrentHashMap)
     - Collections
   - 面向对象
     - [创建对象的5种方式](markdown/Java创建对象的5种方式)
