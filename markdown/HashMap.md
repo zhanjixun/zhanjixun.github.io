@@ -96,3 +96,7 @@ JDK8中扩容时候容量仍是翻倍(`<<1`)，但不会对所有元素重新计
 | TREEIFY_THRESHOLD              | 树化阈值              | 链表长度 `8`，退化阈值 `6`<br>基于泊松分布的统计结果（链表长度 ≥8 的概率极低） |
 | size                           | 存放元素个数          |                                                              |
 | capacity                       | 容量，数组的长度      | 默认为16，扩容翻倍                                           |
+
+
+
+https://javabetter.cn/collection/hashmap.html
