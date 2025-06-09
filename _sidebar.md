@@ -96,11 +96,9 @@
   - [常见问题](markdown/Redis常见问题)
   - [分布式锁](markdown/Redis实现分布式锁)
   - Redis 6.0 多线程
-- 消息队列
-  - RocketMQ
-    - [RocketMQ实现顺序消息](markdown/RocketMQ实现顺序消息)
-    - [RocketMQ怎么防止消息丢失](markdown/RocketMQ怎么防止消息丢失)
-  - Kafka
+- RocketMQ
+  - [RocketMQ常见问题](markdown/RocketMQ常见问题)
+- Kafka
 - Elasticsearch
 - Nginx
 - Apollo
