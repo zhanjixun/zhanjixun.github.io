@@ -88,7 +88,7 @@
     - 多注册中心
   - 源码分析
 - Redis
-  - [5种数据类型及使用场景](markdown/Redis的五种数据类型及使用场景)
+  - [数据类型及使用场景](markdown/Redis的数据类型及使用场景)
   - [部署方式](markdown/Redis的部署方式)
   - [持久化方式](markdown/Redis的持久化机制)
   - [过期策略和内存淘汰机制](markdown/Redis过期策略和内存淘汰机制)
