@@ -10,7 +10,7 @@
 
 借助 BitMap 或 RedisBloom 模块可实现高效去重、存在性判断。
 
-```
+```shell
 BF.ADD user_exist user123
 BF.EXISTS user_exist user123
 ```
@@ -24,7 +24,7 @@ Redis 的 `List`、`Stream` 结构都可以天然用于消息队列。
 **List 实现简单队列**
  用 `LPUSH` + `RPOP` 模拟消息入队出队
 
-```
+```shell
 LPUSH queue task1
 RPOP queue  → task1
 ```
@@ -32,7 +32,7 @@ RPOP queue  → task1
 **Stream 实现高级队列（推荐）**
  支持消费组、消息确认、持久化等功能（类似 Kafka）
 
-```
+```shell
 XADD mq * user jim action login
 XGROUP CREATE mq group1 $
 XREADGROUP GROUP group1 consumer1 STREAMS mq >
@@ -44,7 +44,7 @@ XREADGROUP GROUP group1 consumer1 STREAMS mq >
 
 **计数器限流**
 
-  ```
+  ```shell
   INCR api:count:uid123
   EXPIRE api:count:uid123 60
   ```
@@ -57,7 +57,7 @@ XREADGROUP GROUP group1 consumer1 STREAMS mq >
 
 利用 **ZSet（有序集合）** 存储用户积分、分数。
 
-```
+```shell
 ZADD rank 200 userA
 ZADD rank 150 userB
 ZREVRANGE rank 0 9 WITHSCORES
@@ -71,7 +71,7 @@ Redis 的高性能和过期机制很适合存储用户会话。
 
 **Session缓存**
 
-  ```
+  ```shell
   SETEX session:uid123 token_xyz 1800
   ```
 
@@ -81,7 +81,7 @@ Redis 的高性能和过期机制很适合存储用户会话。
 
 利用原子操作 `INCR`、`DECR` 可快速实现各种计数逻辑。
 
-```
+```shell
 INCR view:article:1001
 ```
 
@@ -91,7 +91,7 @@ INCR view:article:1001
 
 存储地理坐标并进行范围查找或距离计算。
 
-```
+```shell
 GEOADD shop 116.40 39.90 "Beijing"
 GEORADIUS shop 116.41 39.91 5 km
 ```
@@ -102,7 +102,7 @@ GEORADIUS shop 116.41 39.91 5 km
 
 利用 **ZSet** 存储任务执行时间，通过 score 排序实现延迟执行。
 
-```
+```shell
 ZADD delay_task 1730974820 task:send_email
 ZRANGEBYSCORE delay_task 0 current_timestamp
 ```
@@ -121,7 +121,7 @@ ZRANGEBYSCORE delay_task 0 current_timestamp
 利用 Redis 的发布订阅（Pub/Sub）或 Key 监听机制，
  可以实现简单的**服务发现、配置变更通知**。
 
-```
+```shell
 SUBSCRIBE config_update
 PUBLISH config_update "reload"
 ```
