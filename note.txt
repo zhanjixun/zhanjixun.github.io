@@ -70,6 +70,7 @@ Elasticsearch
 
 RocketMQ
     基础概念
+    	RocketMQ和Kafka的区别
 	架构组件
 	    NameServer
 	    Broker
