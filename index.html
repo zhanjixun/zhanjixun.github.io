@@ -26,9 +26,9 @@
         }
 
         /* 隐藏第一个 <li> (文章大标题) */
-       .sidebar-nav > ul > li:first-child > a::before {
+        .sidebar-nav > ul > li:first-child > a::before {
          content: none !important;
-       }
+        }
 
         .sidebar-nav > ul li {
           counter-increment: section;
@@ -40,35 +40,42 @@
           font-weight: bold;
         }
     </style>
-    <style type="text/css">
-        /*markdown文章添加目录序号*/
+    <style>
+        /* 1. 初始化容器：在正文区域重置所有计数器 */
+        .markdown-section {
+          counter-reset: h2count h3count h4count;
+        }
+
+        /* 2. H1 不做任何处理（跳过） */
+
+        /* 3. 处理 H2：中文序号（第一章） */
         .markdown-section h2 {
-            /*遇到h2标签就重置h3的计数器*/
-            counter-reset: h3counter;
-            /*累加h2的计数器*/
-            counter-increment: h2counter;
+          counter-reset: h3count; /* 当遇到新的 H2 时，重置 H3 的计数 */
+          counter-increment: h2count;
         }
 
-        .markdown-section h2 > a > span:before {
-            /*在before位置添加content*/
-            content: counter(h2counter)'\3001';
+        .markdown-section h2::before {
+          /* 使用 cjk-ideographic 实现中文一、二、三 */
+          content: counter(h2count, cjk-ideographic) "、";
         }
 
+        /* 4. 处理 H3：数字序号（1.1） */
         .markdown-section h3 {
-            counter-reset: h4counter;
-            counter-increment: h3counter;
+          counter-reset: h4count; /* 当遇到新的 H3 时，重置 H4 的计数 */
+          counter-increment: h3count;
         }
 
-        .markdown-section h3 > a > span:before {
-            content: counter(h2counter)"."counter(h3counter)" ";
+        .markdown-section h3::before {
+          content: counter(h2count) "." counter(h3count) " ";
         }
 
+        /* 5. 处理 H4：数字序号（1.1.1） */
         .markdown-section h4 {
-            counter-increment: h4counter;
+          counter-increment: h4count;
         }
 
-        .markdown-section h4 > a > span:before {
-            content: counter(h2counter)"."counter(h3counter)"."counter(h4counter)" ";
+        .markdown-section h4::before {
+          content: counter(h2count) "." counter(h3count) "." counter(h4count) " ";
         }
     </style>
     <!-- CDN files for docsify-katex -->
