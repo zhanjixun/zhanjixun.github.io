@@ -124,7 +124,7 @@
   - [DDD](markdown/DDD)
 - 常见场景实现
   - [分布式锁](markdown/分布式锁)
-  - [分布式事务](markdown/分布式事务解决方案)
+  - [分布式事务](markdown/分布式事务)
   - [分表分库](markdown/分表分库)
   - [延迟队列](markdown/延迟队列)
   - [秒杀系统](markdown/秒杀系统的实现)
