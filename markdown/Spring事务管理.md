@@ -144,4 +144,10 @@ Spring 通过 `@Transactional(isolation = Isolation.XXX)` 提供了对隔离级�
 
 
 
-https://mp.weixin.qq.com/s/rPMFHSTCRwCfiLMIzWbxFg
+参考：
+
+[spring之事务传播机制](https://blog.csdn.net/m0_52963553/article/details/127083136)
+
+[spring事务失效情况](https://blog.csdn.net/m0_52963553/article/details/127083235)
+
+[Spring事务深度解析：从入门到精通](https://mp.weixin.qq.com/s/rPMFHSTCRwCfiLMIzWbxFg)

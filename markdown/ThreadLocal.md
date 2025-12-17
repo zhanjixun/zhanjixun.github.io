@@ -100,3 +100,10 @@ ThreadLocal对过期key的清理方式分为两种清理方式，分别是探测
 
 ### ThreadLocal 无法给子线程共享父线程的线程副本数据
 
+
+
+
+
+参考：
+
+[JVM之ThreadLocal及垃圾回收](https://blog.csdn.net/m0_52963553/article/details/126112176)

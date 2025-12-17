@@ -42,3 +42,9 @@ setApplicationContext(ApplicationContext)方法，传入Spring上下文；
 （8）**destroy-method**：
 最后，如果这个Bean的Spring配置中配置了destroy-method属性，会自动调用其配置的销毁方
 法。
+
+
+
+参考：
+
+[spring源码之IOC](https://blog.csdn.net/m0_52963553/article/details/127083276)

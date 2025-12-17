@@ -1,4 +1,4 @@
-# http协议
+# HTTP协议
 
 ## 简介
 
@@ -31,6 +31,13 @@
 | 5xx  | Server Error（服务器错误状态码） | 服务器处理请求出错         |
 
 
+
+
+
 参考：
 
 [HTTP 教程 | 菜鸟教程](https://www.runoob.com/http/http-tutorial.html)
+
+[HTTP 1.0 / 1.1 / 2.0 / 3.0 区别](https://blog.csdn.net/m0_52963553/article/details/129894192)
+
+[HTTPS相关知识点](https://blog.csdn.net/m0_52963553/article/details/130026369)

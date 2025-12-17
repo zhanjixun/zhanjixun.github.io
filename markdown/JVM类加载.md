@@ -31,5 +31,9 @@ class文件中的“类”从加载到JVM内存中，到卸载出内存过程有
 - 避免类的重复加载
 
   > 当父亲已经加载了该类时，就没有必要子ClassLoader再加载一次，保证被加载类的`唯一性`
-  
-  https://blog.csdn.net/BarackYoung/article/details/137060856
+
+
+
+参考：
+[JVM之类加载机制](https://blog.csdn.net/m0_52963553/article/details/129212415)
+[一文搞懂Java类加载机制](https://blog.csdn.net/BarackYoung/article/details/137060856)

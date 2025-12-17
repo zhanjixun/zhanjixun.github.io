@@ -85,3 +85,11 @@ JVM的垃圾回收（Garbage Collection, GC）机制是自动管理内存的核�
    - 将存活对象复制到 Survivor 区
    - 不存活对象回收
 4. 多次存活后晋升到老年代（Tenured）
+
+
+
+
+
+参考：
+
+[JVM之垃圾回收](https://blog.csdn.net/m0_52963553/article/details/129212072)
