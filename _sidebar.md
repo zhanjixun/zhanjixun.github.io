@@ -65,7 +65,7 @@
   - [Mybatis的缓存](markdown/Mybatis缓存)
   - [Mybatis拦截器原理](markdown/Mybatis拦截器)
 - Spring
-  - [IOC](markdown/Bean的生命周期)
+  - [IOC](markdown/Spring IoC)
   - [AOP](markdown/Spring的AOP)
   - [事务](markdown/Spring事务管理)
   - Spring MVC

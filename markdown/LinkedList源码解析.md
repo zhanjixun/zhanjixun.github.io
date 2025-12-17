@@ -6,6 +6,6 @@ LinkedList是基于`链表`结构的一种List，`链表`是由一系列非连�
 
 
 
+参考：
 
-
-https://blog.csdn.net/u012060033/article/details/121251856
+[LinkedList源码详解](https://blog.csdn.net/u012060033/article/details/121251856)

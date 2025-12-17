@@ -1,4 +1,4 @@
-# Bean的生命周期
+# Spring IoC
 
 Spring上下文中的Bean生命周期也类似，如下：
 
