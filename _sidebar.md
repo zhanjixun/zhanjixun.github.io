@@ -61,9 +61,9 @@
   - 数据库引擎
   - 锁
 - Mybatis
-  - [逻辑分页和物理分页](markdown/逻辑分页和物理分页)
-  - [Mybatis的缓存](markdown/Mybatis的缓存)
-  - [Mybatis拦截器原理](markdown/Mybatis拦截器原理)
+  - [逻辑分页和物理分页](markdown/Mybatis分页)
+  - [Mybatis的缓存](markdown/Mybatis缓存)
+  - [Mybatis拦截器原理](markdown/Mybatis拦截器)
 - Spring
   - [IOC](markdown/Bean的生命周期)
   - [AOP](markdown/Spring的AOP)
