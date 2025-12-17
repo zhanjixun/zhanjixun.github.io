@@ -1,15 +1,5 @@
 # MySQL索引原理
 
-
-
-
-
-参考:
-
-[https://blog.csdn.net/qq_28018283/article/details/85050986](https://blog.csdn.net/qq_28018283/article/details/85050986)
-
-[http://blog.codinglabs.org/articles/theory-of-mysql-index.html](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
-
 ## 索引失效场景
 
 1. `LIKE以通配符开头`：模糊查询以 % 开头，例如：`LIKE '%abc'`
@@ -19,3 +9,42 @@
 5. `OR连接非索引列`：OR 条件中包含未索引的列
 6. `范围查询后的列`：联合索引中，范围查询（`>`, `<`, `BETWEEN`）后的列无法使用索引
 7. `使用 != 或者 NOT IN`
+
+## 为什么使用B+树，而不是B树
+
+**磁盘 I/O 优化**
+
+数据库索引存储在磁盘上，每次查找一个节点就是一次磁盘 I/O。
+
+- **B 树**：每个节点既存储“索引键”，也存储“实际数据”。这导致每个节点能存放的索引数量变少。
+
+- **B+ 树**：非叶子节点**只存储索引键**，不存数据。
+
+**结果**：同样的内存页（通常是 16KB），B+ 树能存放更多的索引，分叉（扇出）更多。这使得 B+ 树比 B 树更“矮胖”，查询千万级数据通常只需 3~4 次 I/O 即可定位。
+
+**范围查询效率**
+
+数据库中经常会有 `WHERE age BETWEEN 20 AND 30` 这种范围查询。
+
+- **B 树**：数据分布在各个节点，进行范围查询时必须在树的各层之间来回回溯、中序遍历，效率很低。
+
+- **B+ 树**：所有数据都在**叶子节点**，且叶子节点之间通过**双向链表**相连。
+
+**结果**：只需要找到范围的起点，然后顺着链表向后遍历即可，非常适合扫描和排序。
+
+**扫表（Full Table Scan）更方便**
+
+- **B 树**：需要对整棵树进行复杂的递归遍历。
+- **B+ 树**：直接从第一个叶子节点开始，沿着链表一直走到头，就能完成全表扫描，操作非常简单高效
+
+
+
+
+
+参考:
+
+[MySQL索引详解----看这一篇就够了](https://blog.csdn.net/isolusion/article/details/146426380)
+
+[深入Mysql 索引实现及优化](https://blog.csdn.net/qq_28018283/article/details/85050986)
+
+[http://blog.codinglabs.org/articles/theory-of-mysql-index.html](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
