@@ -18,20 +18,22 @@
             cursor: pointer;
         }
     </style>
-    <style type="text/css">
-        /*sidebar添加目录序号*/
-        .sidebar-nav ul {
-            counter-reset: a;
+    <style>
+        /* 针对侧边栏所有层级开启计数器 */
+        .sidebar-nav > ul ul {
+          counter-reset: section;
+          list-style-type: none;
         }
 
-        .sidebar-nav > ul > li > a:before, .sidebar-nav > ul > li:not(:has(> a)):before {
-            counter-increment: a;
-            content: counter(a) '\3001';
+        .sidebar-nav > ul li {
+          counter-increment: section;
         }
 
-        .sidebar-nav > ul > li li > a:before, .sidebar-nav > ul > li li:not(:has(> a)):before {
-            counter-increment: a;
-            content: counters(a, ".") " ";
+        /* 使用 counters() 函数自动处理 1.1, 1.1.1 这种格式 */
+        .sidebar-nav > ul li a::before {
+          content: counters(section, ".");
+          font-weight: bold;
+          margin-right: 5px;
         }
     </style>
     <style type="text/css">
@@ -66,8 +68,8 @@
         }
     </style>
     <!-- CDN files for docsify-katex -->
-<!--    <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>-->
-<!--    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>-->
+    <!--    <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>-->
+    <!--    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>-->
 </head>
 <body>
 <div id="app">加载中...</div>
@@ -76,7 +78,7 @@
         name: 'Java知识体系',
         nameLink: '/#/README',
         repo: 'https://github.com/zhanjixun/zhanjixun.github.io',
-        loadSidebar: true,
+        loadSidebar: false,
         maxLevel: 6,
         subMaxLevel: 5,
         coverpage: true,
