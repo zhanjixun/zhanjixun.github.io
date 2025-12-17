@@ -1,4 +1,4 @@
-# 一条查询语句的执行过程
+# MySQL查询语句的执行过程
 
 ![](../assets/images/6c677ab6310e1df3.jpg)
 
