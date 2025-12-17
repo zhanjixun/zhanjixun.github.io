@@ -57,7 +57,7 @@
 - MySQL
   - [事务](markdown/MySQL事务管理)
   - [索引](markdown/MySQL索引)
-  - [执行计划](markdown/MySQL的执行计划)
+  - [执行计划](markdown/MySQL执行计划)
   - 数据库引擎
   - 锁
 - Mybatis
