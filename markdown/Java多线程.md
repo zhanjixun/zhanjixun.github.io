@@ -81,5 +81,3 @@ synchronized ：wait notify/notifyAll
 				wait会立即释放锁并开始等待；notify后不会马上释放锁，而是等到同步方法执行完才释放；被唤醒的线程需要重新竞争锁
 				虚假唤醒：线程在调用wait方法后，没有其他线程notify显式唤醒，自己从等待状态返回
 			Lock Condition：await signal/signalAll
-
-## 

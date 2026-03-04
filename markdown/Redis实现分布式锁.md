@@ -72,7 +72,7 @@ public boolean unlock(String lockValue) {
 
    > 解决思路：1、RedLock算法；2、使用 Redis Sentinel 或 Cluster（主从 + 自动切换）；3、Redis + DB/MQ 补偿（业务强一致性）
 
-### **自动续约**
+### 自动续约
 
 ```java
 // 续约线程池
@@ -152,7 +152,7 @@ public boolean unlock() {
 }
 ```
 
-### **可重入**
+### 可重入
 
 1、使用 `ThreadLocal` 记录重入次数：
 
