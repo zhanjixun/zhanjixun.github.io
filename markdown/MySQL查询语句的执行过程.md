@@ -61,13 +61,3 @@
 | **决策** | 优化器   | 选择索引、生成执行计划   |
 | **操作** | 执行器   | 调用引擎接口、处理结果集 |
 | **数据** | 存储引擎 | 负责数据的存储和提取     |
-
-
-
-参考：
-
-[学习日志：MySql的执行流程](https://blog.csdn.net/weixin_46117680/article/details/140813643)
-
-[一条查询sql的执行流程和底层原理](https://www.cnblogs.com/jindp/p/10744707.html)
-
-[一条SQL语句在MySQL中执行过程全解析](https://blog.csdn.net/weter_drop/article/details/93386581)

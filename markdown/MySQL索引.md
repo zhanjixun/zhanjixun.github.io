@@ -36,15 +36,3 @@
 
 - **B 树**：需要对整棵树进行复杂的递归遍历。
 - **B+ 树**：直接从第一个叶子节点开始，沿着链表一直走到头，就能完成全表扫描，操作非常简单高效
-
-
-
-
-
-参考:
-
-[MySQL索引详解----看这一篇就够了](https://blog.csdn.net/isolusion/article/details/146426380)
-
-[深入Mysql 索引实现及优化](https://blog.csdn.net/qq_28018283/article/details/85050986)
-
-[http://blog.codinglabs.org/articles/theory-of-mysql-index.html](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
