@@ -4,6 +4,8 @@
 
 
 
+![](../assets/drawio/SpringCloudGateway架构图.svg)
+
 ## 路由
 
 Gateway 的路由可以分为三种：
