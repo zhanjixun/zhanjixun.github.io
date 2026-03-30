@@ -20,6 +20,35 @@
 - **优点**：分担读压力，提供了数据冗余备份。
 - **缺点**：主从切换需要手动或配合工具（如 MHA/Keepalived），存在短暂不可用时间。
 
+```shell
+docker network create mysql-net
+docker run -d --name mysql-master --network mysql-net -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8.0 --server-id=1 --log-bin=mysql-bin
+docker run -d --name mysql-slave1 --network mysql-net -e MYSQL_ROOT_PASSWORD=root -p 3307:3306 mysql:8.0 --server-id=2 --log-bin=mysql-bin
+docker run -d --name mysql-slave2 --network mysql-net -e MYSQL_ROOT_PASSWORD=root -p 3308:3306 mysql:8.0 --server-id=3 --log-bin=mysql-bin
+
+docker exec -it mysql-master mysql -uroot -proot
+CREATE USER 'repl'@'%' IDENTIFIED WITH mysql_native_password BY 'repl_password';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+FLUSH PRIVILEGES;
+-- 查看 Master 状态，记下 File 和 Position
+SHOW MASTER STATUS;
+
+docker exec -it mysql-slave1 mysql -uroot -proot
+docker exec -it mysql-slave2 mysql -uroot -proot
+
+CHANGE MASTER TO 
+  MASTER_HOST='mysql-master',
+  MASTER_USER='repl',
+  MASTER_PASSWORD='repl_password',
+  MASTER_LOG_FILE='mysql-bin.000003',
+  MASTER_LOG_POS=827;
+
+START SLAVE;
+
+-- 检查状态，看到 Slave_IO_Running 和 Slave_SQL_Running 均为 Yes 即可
+SHOW SLAVE STATUS\G
+```
+
 ------
 
 ### 3. 高可用集群方案 (High Availability)
