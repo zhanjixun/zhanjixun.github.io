@@ -69,9 +69,6 @@ check_unreferenced_assets() {
   rm -f "$tmp_referenced"
 }
 
-check_unreferenced_markdown
-check_unreferenced_assets
-
 find ./assets/drawio -type f -name "*.bkp" -delete
 sed -i 's#http://localhost:3000##g' assets/index.svg
 sed -i 's|http://localhost:3000|https://zhanjixun.github.io|g' README.md
@@ -79,4 +76,7 @@ git pull
 git add -A
 git commit -m 'script push'
 git push
+
+check_unreferenced_markdown
+check_unreferenced_assets
 read -n 1 -s -r -p "按任意键退出..."
