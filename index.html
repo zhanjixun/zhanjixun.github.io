@@ -53,15 +53,15 @@
     <style>
         /* 1. 初始化容器：在正文区域重置所有计数器 */
         .markdown-section {
-          counter-reset: h2count h3count h4count;
+          counter-reset: h2count;
         }
 
         /* 2. H1 不做任何处理（跳过） */
 
         /* 3. 处理 H2：中文序号（第一章） */
         .markdown-section h2 {
-          counter-reset: h3count; /* 当遇到新的 H2 时，重置 H3 的计数 */
           counter-increment: h2count;
+          counter-reset: h3count; /* 当遇到新的 H2 时，重置 H3 的计数 */
         }
 
         .markdown-section h2::before {
@@ -71,8 +71,8 @@
 
         /* 4. 处理 H3：数字序号（1.1） */
         .markdown-section h3 {
-          counter-reset: h4count; /* 当遇到新的 H3 时，重置 H4 的计数 */
           counter-increment: h3count;
+          counter-reset: h4count; /* 当遇到新的 H3 时，重置 H4 的计数 */
         }
 
         .markdown-section h3::before {
@@ -96,8 +96,6 @@
 <div id="app">加载中...</div>
 <script>
     window.$docsify = {
-        name: 'Java知识体系',
-        nameLink: '/#/README',
         // repo: 'https://github.com/zhanjixun/zhanjixun.github.io',
         loadSidebar: false,
         maxLevel: 6,
@@ -106,19 +104,6 @@
         onlyCover: true,
         auto2top: true,
         mergeNavbar: true,
-        search: {
-            noData: {
-                '/zh/': '没有结果!',
-                '/en/': 'No results!',
-                '/': '没有结果!',
-            },
-            paths: 'auto',
-            placeholder: {
-                '/zh/': '搜索',
-                '/en/': 'Search',
-                '/': '搜索',
-            }
-        },
         markdown: {
             renderer: {
                 code: function (code, lang) {
@@ -152,8 +137,6 @@
 <script src="assets/js/docsify.min.js"></script>
 
 <!-- docsify plugins -->
-<!-- support search -->
-<script src="assets/js/search.min.js"></script>
 <!-- Support docsify sidebar catalog expand and collapse -->
 <script src="assets/js/docsify-sidebar-collapse.min.js"></script>
 <!-- Medium's image zoom -->
